@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robin Kali | AV Architect & Web Developer</title>
-    <meta name="description" content="Persoonlijke playground van Robin Kali. AV Solutions Architect (Crestron, Q-Sys, LED) en Web Developer. Fan van motoren en sim-racing.">
+    <title>Robin Kali</title>
+    <meta name="description" content="Persoonlijke playground van Robin Kali.">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -18,7 +18,7 @@
                 <li><a href="pages/bikes.html">Bikes</a></li>
                 <li><a href="pages/av.html">AV</a></li>
                 <li><a href="pages/web.html">Webdesign</a></li>
-                <li><a href="pages/contact.html">Contact</a></li>
+                <li><a href="pages/sim.html">Simracing</a></li>
             </ul>
             <div class="nav-controls">
                 <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
@@ -37,9 +37,29 @@
     <header id="home" class="hero">
         <div class="container hero-content">
             <h1 class="typewriter-text">Welcome to my <span class="accent">www</span></h1>
-            <p class="hero-sub">Robin Kali</p>
-            <p class="oneliner">"Forever under construction"</p>
-            <a href="#werk" class="btn">Bekijk meer</a>
+            <h2>choose your mode:</h2>
+            <div class="hero-grid">
+                <a href="#werk" class="hero-btn">
+                    <i class="fa-solid fa-motorcycle"></i>
+                    <span>Bikes</span>
+                </a>
+                <a href="#" class="hero-btn">
+                    <i class="fa-solid fa-tv"></i>
+                    <span>AV</span>
+                </a>
+                <a href="#" class="hero-btn">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Web</span>
+                </a>
+                <a href="#" class="hero-btn">
+                    <i class="fa-solid fa-car"></i>
+                    <span>Sim</span>
+                </a>
+                <a href="#over-mij" class="hero-btn span-col-2">
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <span>Garage tour</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -47,116 +67,122 @@
     <section id="over-mij" class="section fade-in">
         <div class="container split-layout">
             <div class="text-content">
-                <h2>Hello!</h2>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h2>Hi!</h2>
+                <p>Wat kom je doen?</p>
             </div>
-            <div class="image-content">
-                <!-- Placeholder voor profielfoto -->
+            <!-- <div class="image-content">
                 <div class="profile-placeholder">
-                    <i class="fa-solid fa-user-astronaut"></i>
+                    <img src="assets/media/rk-resized.png" alt="Robin Kali">
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
     <!-- Separator 1 -->
     <section class="separator-section">
-        <img src="https://picsum.photos/1920/1080?random=1" alt="Abstract Tech" loading="lazy" class="separator-image">
+        <img src="assets/media/636-resized.JPG" alt="Kawasaki Ninja 636" loading="lazy" class="separator-image">
         <div class="separator-overlay"></div>
-        <h2 class="floating-title">Focus op <span class="accent">Detail</span></h2>
+        <h2 class="floating-title">Kawasaki Ninja <span class="accent"> 636</span></h2>
     </section>
 
-    <!-- Hobby's Grid -->
     <section id="hobbys" class="section alt-bg fade-in">
         <div class="container">
-            <h2>Interesses & Hobby's</h2>
+            <h2>Been to</h2>
             <div class="grid-4">
                 <div class="card hobby-card">
-                    <i class="fa-solid fa-terminal accent-icon"></i>
-                    <h3>Coding Challenges</h3>
-                    <p>Van CSS art tot JS algoritmes.</p>
+                    <i class="fa-solid fa-flag-checkered accent-icon"></i>
+                    <h3>Nürburgring</h3>
+                    <p>De Groene Hel.</p>
                 </div>
                 <div class="card hobby-card">
-                    <i class="fa-solid fa-microchip accent-icon"></i>
-                    <h3>Home Automation</h3>
-                    <p>Mijn huis is slimmer dan ik.</p>
+                    <i class="fa-solid fa-flag-checkered accent-icon"></i>
+                    <h3>Zandvoort</h3>
+                    <p>Circuit in de duinen.</p>
                 </div>
                 <div class="card hobby-card">
-                    <i class="fa-solid fa-motorcycle accent-icon"></i>
-                    <h3>Motorrijden</h3>
-                    <p>Vrijheid op twee wielen.</p>
+                    <i class="fa-solid fa-flag-checkered accent-icon"></i>
+                    <h3>Midland</h3>
+                    <p>Circuit Lelystad.</p>
                 </div>
-                <div class="card hobby-card">
-                    <i class="fa-solid fa-gamepad accent-icon"></i>
-                    <h3>Sim Racing</h3>
-                    <p>GT3 & MotoGP (Rossi fan!).</p>
-                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Separator 2 -->
     <section class="separator-section">
-        <img src="https://picsum.photos/1920/1080?random=2" alt="Racing Setup" loading="lazy" class="separator-image">
+        <img src="assets/media/hyper-resized.JPG" alt="Racing Setup" loading="lazy" class="separator-image">
         <div class="separator-overlay"></div>
-        <h2 class="floating-title">Snelheid & <span class="accent">Precisie</span></h2>
+        <h2 class="floating-title">Ducati Hyper <span class="accent">796</span></h2>
     </section>
 
     <!-- Projecten Showcase -->
     <section id="werk" class="section fade-in">
         <div class="container">
-            <h2>Leuke Dingen</h2>
-            <p class="subtitle">Altijd op zoek naar het volgende toffe project.</p>
+            <h1>Keep scrolling</h1>
+            <!-- <p class="subtitle">Lorem ipsum dolor sit amet.</p>
             <div class="grid-3">
                 <div class="card project-card">
                     <div class="card-image" style="background-color: #333;"></div>
                     <div class="card-content">
-                        <h3>Smart Home Dashboard</h3>
-                        <p>Een custom interface voor Home Assistant.</p>
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, dignissimos!</p>
                     </div>
                 </div>
                 <div class="card project-card">
                     <div class="card-image" style="background-color: #444;"></div>
                     <div class="card-content">
-                        <h3>Discord Bot</h3>
-                        <p>Automatisering voor mijn gaming server.</p>
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, veritatis!</p>
                     </div>
                 </div>
                 <div class="card project-card">
                     <div class="card-image" style="background-color: #555;"></div>
                     <div class="card-content">
-                        <h3>Zelfgebouwde PC</h3>
-                        <p>Watergekoeld monster voor sim racing.</p>
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, porro.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
     <!-- Separator 3 -->
     <section class="separator-section">
-        <img src="https://picsum.photos/1920/1080?random=3" alt="Code Abstract" loading="lazy" class="separator-image">
+        <img src="assets/media/09gen2-resized.JPG" alt="Yamaha MT09 gen 2" loading="lazy" class="separator-image">
         <div class="separator-overlay"></div>
-        <h2 class="floating-title">Code is <span class="accent">Kunst</span></h2>
+        <h2 class="floating-title">Yamaha MT09 <span class="accent">Gen 2</span></h2>
     </section>
 
-    <!-- CTA Blok -->
-    <section class="section cta-section fade-in">
-        <div class="container">
-            <h2>Let's Connect?</h2>
-            <p>Vind je het leuk om eens ideeën uit te wisselen over tech, code of motoren?</p>
-            <a href="pages/contact.html" class="btn btn-outline">Stuur een berichtje</a>
+    <section id="over-mij" class="section fade-in">
+        <div class="container split-layout">
+            <div class="text-content">
+                <h2>Hello!</h2>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="image-content">
+                <div class="profile-placeholder">
+                    <img src="assets/media/rk-resized.png" alt="Robin Kali">
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Separator 4 -->
+    <section class="separator-section">
+        <img src="assets/media/09gen4-resized.JPG" alt="Yamaha MT09 gen 4" loading="lazy" class="separator-image">
+        <div class="separator-overlay"></div>
+        <h2 class="floating-title">Yamaha MT09 <span class="accent">Gen 4</span></h2>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
-            <p>Gemaakt met <i class="fa-solid fa-mug-hot"></i> en code door <strong>Robin Kali</strong>.</p>
+            <p>Made with lot's of <i class="fa-solid fa-mug-hot"></i> by <strong>Robin Kali</strong>.</p>
             <div class="socials">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-github"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/robin-kalaykhan-4b2443153/"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/RobinKali"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/robinxkali/"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
