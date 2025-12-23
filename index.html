@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robin Kali | AV Architect & Web Developer</title>
+    <meta name="description" content="Persoonlijke playground van Robin Kali. AV Solutions Architect (Crestron, Q-Sys, LED) en Web Developer. Fan van motoren en sim-racing.">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">robinkali<span class="accent">.nl</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="pages/bikes.html">Bikes</a></li>
+                <li><a href="pages/av.html">AV</a></li>
+                <li><a href="pages/web.html">Webdesign</a></li>
+                <li><a href="pages/contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <h1 class="typewriter-text">Welcome to my <span class="accent">www</span></h1>
+            <p class="hero-sub">Robin Kali</p>
+            <p class="oneliner">"Forever under construction"</p>
+            <a href="#werk" class="btn">Bekijk meer</a>
+        </div>
+    </header>
+
+    <!-- Over Mij -->
+    <section id="over-mij" class="section fade-in">
+        <div class="container split-layout">
+            <div class="text-content">
+                <h2>Hello!</h2>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="image-content">
+                <!-- Placeholder voor profielfoto -->
+                <div class="profile-placeholder">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator 1 -->
+    <section class="separator-section">
+        <img src="https://picsum.photos/1920/1080?random=1" alt="Abstract Tech" loading="lazy" class="separator-image">
+        <div class="separator-overlay"></div>
+        <h2 class="floating-title">Focus op <span class="accent">Detail</span></h2>
+    </section>
+
+    <!-- Hobby's Grid -->
+    <section id="hobbys" class="section alt-bg fade-in">
+        <div class="container">
+            <h2>Interesses & Hobby's</h2>
+            <div class="grid-4">
+                <div class="card hobby-card">
+                    <i class="fa-solid fa-terminal accent-icon"></i>
+                    <h3>Coding Challenges</h3>
+                    <p>Van CSS art tot JS algoritmes.</p>
+                </div>
+                <div class="card hobby-card">
+                    <i class="fa-solid fa-microchip accent-icon"></i>
+                    <h3>Home Automation</h3>
+                    <p>Mijn huis is slimmer dan ik.</p>
+                </div>
+                <div class="card hobby-card">
+                    <i class="fa-solid fa-motorcycle accent-icon"></i>
+                    <h3>Motorrijden</h3>
+                    <p>Vrijheid op twee wielen.</p>
+                </div>
+                <div class="card hobby-card">
+                    <i class="fa-solid fa-gamepad accent-icon"></i>
+                    <h3>Sim Racing</h3>
+                    <p>GT3 & MotoGP (Rossi fan!).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator 2 -->
+    <section class="separator-section">
+        <img src="https://picsum.photos/1920/1080?random=2" alt="Racing Setup" loading="lazy" class="separator-image">
+        <div class="separator-overlay"></div>
+        <h2 class="floating-title">Snelheid & <span class="accent">Precisie</span></h2>
+    </section>
+
+    <!-- Projecten Showcase -->
+    <section id="werk" class="section fade-in">
+        <div class="container">
+            <h2>Leuke Dingen</h2>
+            <p class="subtitle">Altijd op zoek naar het volgende toffe project.</p>
+            <div class="grid-3">
+                <div class="card project-card">
+                    <div class="card-image" style="background-color: #333;"></div>
+                    <div class="card-content">
+                        <h3>Smart Home Dashboard</h3>
+                        <p>Een custom interface voor Home Assistant.</p>
+                    </div>
+                </div>
+                <div class="card project-card">
+                    <div class="card-image" style="background-color: #444;"></div>
+                    <div class="card-content">
+                        <h3>Discord Bot</h3>
+                        <p>Automatisering voor mijn gaming server.</p>
+                    </div>
+                </div>
+                <div class="card project-card">
+                    <div class="card-image" style="background-color: #555;"></div>
+                    <div class="card-content">
+                        <h3>Zelfgebouwde PC</h3>
+                        <p>Watergekoeld monster voor sim racing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator 3 -->
+    <section class="separator-section">
+        <img src="https://picsum.photos/1920/1080?random=3" alt="Code Abstract" loading="lazy" class="separator-image">
+        <div class="separator-overlay"></div>
+        <h2 class="floating-title">Code is <span class="accent">Kunst</span></h2>
+    </section>
+
+    <!-- CTA Blok -->
+    <section class="section cta-section fade-in">
+        <div class="container">
+            <h2>Let's Connect?</h2>
+            <p>Vind je het leuk om eens ideeën uit te wisselen over tech, code of motoren?</p>
+            <a href="pages/contact.html" class="btn btn-outline">Stuur een berichtje</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>Gemaakt met <i class="fa-solid fa-mug-hot"></i> en code door <strong>Robin Kali</strong>.</p>
+            <div class="socials">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

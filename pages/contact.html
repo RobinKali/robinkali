@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Robin Kali</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigatie (Aangepaste links voor subpagina) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">robinkali<span class="accent">.nl</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#over-mij">Over Mij</a></li>
+                <li><a href="../index.html#hobbys">Hobby's</a></li>
+                <li><a href="../index.html#werk">Mijn Werk</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <header class="hero small-hero">
+        <div class="container">
+            <h1>Let's Connect</h1>
+            <p class="hero-sub">Geen offertes, gewoon een digitaal kopje koffie.</p>
+        </div>
+    </header>
+
+    <!-- Contact Content -->
+    <section class="section fade-in">
+        <div class="container split-layout contact-layout">
+            <div class="contact-info">
+                <h2>Zeg hallo!</h2>
+                <p>Heb je een vraag over AV, wil je sparren over webdevelopment of gewoon praten over de laatste MotoGP race?</p>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-envelope accent"></i> <a href="mailto:info@robinkali.nl">info@robinkali.nl</a></li>
+                    <li><i class="fa-brands fa-linkedin accent"></i> <a href="#">LinkedIn Profiel</a></li>
+                    <li><i class="fa-brands fa-github accent"></i> <a href="#">GitHub Repos</a></li>
+                </ul>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Naam</label>
+                    <input type="text" id="name" placeholder="Hoe heet je?" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Waar kan ik je bereiken?" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Onderwerp</label>
+                    <input type="text" id="subject" placeholder="Waar wil je het over hebben?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Bericht</label>
+                    <textarea id="message" rows="5" placeholder="Brand los..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Verstuur bericht</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>Gemaakt met <i class="fa-solid fa-mug-hot"></i> en code door <strong>Robin Kali</strong>.</p>
+            <div class="socials">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+</body>
+</html>
