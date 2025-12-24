@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- Page Fade-in ---
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 50);
+
+    // --- Back to Top Button ---
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     // --- Dark/Light Mode Toggle ---
     const toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
@@ -138,6 +161,72 @@ document.addEventListener('DOMContentLoaded', () => {
                     ticking = false;
                 });
                 ticking = true;
+            }
+        });
+    }
+
+    // --- Video Autoplay Observer ---
+    // Speelt video's af als ze 50% in beeld zijn, pauzeert ze daarbuiten.
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.play().catch(e => console.log("Autoplay prevented:", e));
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.gallery-item video').forEach(video => {
+        video.muted = true; // Forceer mute voor autoplay policy
+        videoObserver.observe(video);
+    });
+
+    // --- Lightbox Logic ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVideo = document.getElementById('lightbox-video');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video');
+
+    if (lightbox) {
+        // Open Lightbox
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Voorkom scrollen op body
+
+                if (item.tagName === 'IMG') {
+                    lightboxImg.src = item.src;
+                    lightboxImg.style.display = 'block';
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.pause();
+                } else if (item.tagName === 'VIDEO') {
+                    lightboxVideo.src = item.src;
+                    lightboxVideo.style.display = 'block';
+                    lightboxImg.style.display = 'none';
+                    // In lightbox willen we geluid en controls
+                    lightboxVideo.muted = false; 
+                    lightboxVideo.controls = true;
+                    lightboxVideo.play();
+                }
+            });
+        });
+
+        // Sluit Lightbox functie
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxVideo.pause();
+            lightboxVideo.src = ""; // Reset video source
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        // Sluit ook als je naast de foto klikt
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
             }
         });
     }
