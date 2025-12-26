@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxVideo = document.getElementById('lightbox-video');
     const closeBtn = document.querySelector('.lightbox-close');
-    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video');
+    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video, .social-image-container img');
 
     if (lightbox) {
         // Open Lightbox
