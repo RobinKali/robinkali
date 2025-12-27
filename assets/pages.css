@@ -30,7 +30,7 @@ body.page-sim {
 
 /* --- Shared Hero Styles for Subpages --- */
 .sub-hero {
-    height: 50vh;
+    height: 100vh;
     min-height: 400px;
     display: flex;
     align-items: center;
