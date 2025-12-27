@@ -1,0 +1,22 @@
+# --- Robin Kali URL Rewriting & Security ---
+
+RewriteEngine On
+
+# Stel de basis in. Pas dit aan naar /submap/ als je site niet in de root staat.
+RewriteBase /
+
+# 1. Redirect index.html naar root (/)
+# Voorkomt duplicate content (bijv. /index.html en /)
+RewriteCond %{THE_REQUEST} /index\.html [NC]
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+# 2. Verwijder .html extensie uit de URL balk (External Redirect)
+# Als iemand /pagina.html bezoekt, stuur ze naar /pagina
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# 3. Koppel schone URL intern aan het bestand (Internal Rewrite)
+# Als iemand /pagina opvraagt, serveer stiekem /pagina.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]

@@ -6,9 +6,10 @@
     <title>Robin Kali - Simracing</title>
     <meta name="description" content="Simracing setup en resultaten van Robin Kali.">
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="page-sim">
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -34,20 +35,54 @@
     </nav>
 
     <!-- Header / Hero -->
-    <header class="hero small-hero">
-        <div class="container hero-content">
+    <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/ff003c?text=Sim+Hero+Image');">
+        <div class="container sub-hero-content">
             <h1 class="typewriter-text">Sim <span class="accent">Racing</span></h1>
             <p class="hero-sub">Rigs, hardware & lap times</p>
         </div>
     </header>
 
-    <!-- Main Content Placeholder -->
-    <main class="section fade-in">
+    <!-- Section 1: The Rig (Hardware) -->
+    <section class="section fade-in">
         <div class="container">
-            <h2>Work in Progress</h2>
-            <p>Details over de simrig en races.</p>
+            <h2>The <span class="accent">Rig</span></h2>
+            <div class="split-layout">
+                <div class="gear-list">
+                    <div class="gear-row"><strong>Wheelbase</strong> <span>Fanatec CSL DD (8nm)</span></div>
+                    <div class="gear-row"><strong>Pedals</strong> <span>Fanatec V3 Inverted</span></div>
+                    <div class="gear-row"><strong>Cockpit</strong> <span>SimLab P1-X</span></div>
+                    <div class="gear-row"><strong>Monitor</strong> <span>Samsung G9 Odyssey</span></div>
+                </div>
+                <div class="card-image" style="background-image: url('../assets/media/hyper-resized.JPG'); min-height: 300px; border-radius: 8px;"></div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Section 2: Telemetry (Animated Bars) -->
+    <section class="section alt-bg fade-in">
+        <div class="container">
+            <h2>Driver <span class="accent">Stats</span></h2>
+            <div class="telemetry-container">
+                <div class="stat-bar"><div class="stat-fill" style="--target-width: 85%;">Consistency</div></div>
+                <div class="stat-bar"><div class="stat-fill" style="--target-width: 92%;">Racecraft</div></div>
+                <div class="stat-bar"><div class="stat-fill" style="--target-width: 78%;">Qualifying Pace</div></div>
+                <div class="stat-bar"><div class="stat-fill" style="--target-width: 95%;">Safety Rating</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Track Records -->
+    <section class="section fade-in">
+        <div class="container">
+            <h2>Track <span class="accent">Records</span></h2>
+            <div class="spec-grid">
+                <div class="spec-item"><span class="spec-value">1:44.2</span><span class="spec-label">Spa Francorchamps</span></div>
+                <div class="spec-item"><span class="spec-value">1:28.5</span><span class="spec-label">Zolder</span></div>
+                <div class="spec-item"><span class="spec-value">8:15.0</span><span class="spec-label">Nordschleife</span></div>
+                <div class="spec-item"><span class="spec-value">1:55.3</span><span class="spec-label">Nürburgring GP</span></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>

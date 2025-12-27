@@ -6,9 +6,10 @@
     <title>Robin Kali - Bikes</title>
     <meta name="description" content="Motorfiets projecten en ritten van Robin Kali.">
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="page-bikes">
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -34,20 +35,60 @@
     </nav>
 
     <!-- Header / Hero -->
-    <header class="hero small-hero">
-        <div class="container hero-content">
+    <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/ccff00?text=Bikes+Hero+Image');">
+        <div class="container sub-hero-content">
             <h1 class="typewriter-text">Motor <span class="accent">Passie</span></h1>
             <p class="hero-sub">Garage, trips & upgrades</p>
         </div>
     </header>
 
-    <!-- Main Content Placeholder -->
-    <main class="section fade-in">
+    <!-- Section 1: The Garage (Current Bikes) -->
+    <section class="section fade-in">
         <div class="container">
-            <h2>Work in Progress</h2>
-            <p>Hier komen de motoren en verhalen.</p>
+            <h2>The <span class="accent">Garage</span></h2>
+            <div class="grid-3">
+                <div class="card hobby-card">
+                    <div class="card-image" style="background-image: url('../assets/media/09gen4-resized.JPG'); height: 200px;"></div>
+                    <div class="card-content">
+                        <h3>Yamaha MT-09 Gen4</h3>
+                        <p>The current weapon of choice. 2024 Model.</p>
+                    </div>
+                </div>
+                <div class="card hobby-card">
+                    <div class="card-image" style="background-image: url('../assets/media/pitbike-2.jpg'); height: 200px;"></div>
+                    <div class="card-content">
+                        <h3>Pitbike</h3>
+                        <p>For the pure fun and track days.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Section 2: Technical Specs (Data Grid) -->
+    <section class="section alt-bg fade-in">
+        <div class="container">
+            <h2>MT-09 <span class="accent">Stats</span></h2>
+            <div class="spec-grid">
+                <div class="spec-item"><span class="spec-value">119</span><span class="spec-label">HP</span></div>
+                <div class="spec-item"><span class="spec-value">93</span><span class="spec-label">NM Torque</span></div>
+                <div class="spec-item"><span class="spec-value">193</span><span class="spec-label">KG Wet</span></div>
+                <div class="spec-item"><span class="spec-value">890</span><span class="spec-label">CC CP3</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Ride Log (Simple List) -->
+    <section class="section fade-in">
+        <div class="container">
+            <h2>Ride <span class="accent">Log</span></h2>
+            <div class="gear-list">
+                <div class="gear-row"><span><i class="fa-solid fa-location-dot accent"></i> Cochem, DE</span> <span>2024</span></div>
+                <div class="gear-row"><span><i class="fa-solid fa-location-dot accent"></i> Luxembourg</span> <span>2023</span></div>
+                <div class="gear-row"><span><i class="fa-solid fa-location-dot accent"></i> Sauerland, DE</span> <span>2023</span></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>

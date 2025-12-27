@@ -6,9 +6,10 @@
     <title>Robin Kali - Webdesign</title>
     <meta name="description" content="Webdesign en development projecten van Robin Kali.">
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="page-web">
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -34,20 +35,70 @@
     </nav>
 
     <!-- Header / Hero -->
-    <header class="hero small-hero">
-        <div class="container hero-content">
+    <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/1a9bc1?text=Web+Hero+Image');">
+        <div class="container sub-hero-content">
             <h1 class="typewriter-text">Web <span class="accent">Development</span></h1>
             <p class="hero-sub">Projecten, code & design</p>
         </div>
     </header>
 
-    <!-- Main Content Placeholder -->
-    <main class="section fade-in">
+    <!-- Section 1: Tech Stack (Floating Icons) -->
+    <section class="section fade-in">
         <div class="container">
-            <h2>Work in Progress</h2>
-            <p>Showcase van websites en applicaties.</p>
+            <h2>Tech <span class="accent">Stack</span></h2>
+            <div class="tech-stack">
+                <div class="tech-icon"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-react"></i><span>React</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-node"></i><span>Node.js</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                <div class="tech-icon"><i class="fa-brands fa-vuejs"></i><span>Vue.js</span></div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section class="section alt-bg fade-in">
+        <div class="container">
+            <h2>Recent <span class="accent">Projects</span></h2>
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="project-thumb"></div>
+                    <div class="project-info">
+                        <h3>Portfolio V1</h3>
+                        <p>The site you are looking at right now.</p>
+                        <div class="project-tags">
+                            <span>HTML</span><span>CSS</span><span>JS</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-thumb" style="background: #222;"></div>
+                    <div class="project-info">
+                        <h3>Dashboard UI</h3>
+                        <p>Concept for a simracing telemetry dashboard.</p>
+                        <div class="project-tags">
+                            <span>React</span><span>ChartJS</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Philosophy -->
+    <section class="section fade-in">
+        <div class="container split-layout">
+            <div>
+                <h2>Code <span class="accent">Philosophy</span></h2>
+                <p>Clean, semantic, and performant. I believe in building web experiences that are accessible and delightful to use.</p>
+            </div>
+            <div style="font-size: 10rem; color: var(--bg-alt); text-align: center;">
+                <i class="fa-solid fa-code"></i>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>

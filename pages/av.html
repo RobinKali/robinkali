@@ -6,9 +6,10 @@
     <title>Robin Kali - AV</title>
     <meta name="description" content="Audio Visuele projecten en gear van Robin Kali.">
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="page-av">
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -34,20 +35,77 @@
     </nav>
 
     <!-- Header / Hero -->
-    <header class="hero small-hero">
-        <div class="container hero-content">
+    <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/9d00ff?text=AV+Hero+Image');">
+        <div class="container sub-hero-content">
             <h1 class="typewriter-text">Audio <span class="accent">Visuals</span></h1>
             <p class="hero-sub">Gear, setups & producties</p>
         </div>
     </header>
 
-    <!-- Main Content Placeholder -->
-    <main class="section fade-in">
+    <!-- Section 1: Featured Work (Video Grid) -->
+    <section class="section fade-in">
         <div class="container">
-            <h2>Work in Progress</h2>
-            <p>Hier gaan we de AV-content bouwen.</p>
+            <h2>Featured <span class="accent">Shots</span></h2>
+            <div class="grid-3">
+                <!-- Using existing media as placeholders -->
+                <div class="gallery-item" style="width: 100%; aspect-ratio: 16/9;">
+                    <video src="../assets/media/burnout.mp4" muted loop playsinline autoplay></video>
+                </div>
+                <div class="gallery-item" style="width: 100%; aspect-ratio: 16/9;">
+                    <video src="../assets/media/pitbike.mp4" muted loop playsinline autoplay></video>
+                </div>
+                <div class="gallery-item" style="width: 100%; aspect-ratio: 16/9;">
+                    <img src="../assets/media/kawa-burn.JPG" style="object-fit: cover; width: 100%; height: 100%;">
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Section 2: Gear Locker (Interactive List) -->
+    <section class="section alt-bg fade-in">
+        <div class="container">
+            <h2>The <span class="accent">Locker</span></h2>
+            <div class="gear-list" style="max-width: 800px; margin: 0 auto;">
+                <div class="gear-row">
+                    <strong>Sony A7 III</strong> <span>Main Body</span>
+                </div>
+                <div class="gear-row">
+                    <strong>Tamron 28-75mm f/2.8</strong> <span>Workhorse Lens</span>
+                </div>
+                <div class="gear-row">
+                    <strong>DJI Ronin SC</strong> <span>Stabilization</span>
+                </div>
+                <div class="gear-row">
+                    <strong>GoPro Hero 10</strong> <span>Action</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Services -->
+    <section class="section fade-in">
+        <div class="container" style="text-align: center;">
+            <h2><span class="accent">Services</span></h2>
+            <div class="grid-4">
+                <div class="card">
+                    <i class="fa-solid fa-video accent-icon"></i>
+                    <h3>Editing</h3>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-camera accent-icon"></i>
+                    <h3>Photography</h3>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-clapperboard accent-icon"></i>
+                    <h3>Production</h3>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-sliders accent-icon"></i>
+                    <h3>Color Grading</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
