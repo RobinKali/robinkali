@@ -230,4 +230,110 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- LED Wall Configurator Logic (Class Based) ---
+    class LedConfigurator {
+        constructor(prefix, cabinetSpecs, pitches, isOutdoor = false) {
+            this.prefix = prefix;
+            this.cabinetW = cabinetSpecs.w;
+            this.cabinetH = cabinetSpecs.h;
+            this.pitches = pitches;
+            this.isOutdoor = isOutdoor;
+
+            // Elements
+            this.grid = document.getElementById(`${prefix}-grid`);
+            this.inCols = document.getElementById(`${prefix}-cols`);
+            this.inRows = document.getElementById(`${prefix}-rows`);
+            this.inPitch = document.getElementById(`${prefix}-pitch`);
+            this.outRes = document.getElementById(`${prefix}-res`);
+            this.outDim = document.getElementById(`${prefix}-dim`);
+            this.outCab = document.getElementById(`${prefix}-cab`);
+
+            if (this.grid) {
+                this.init();
+            }
+        }
+
+        init() {
+            this.inCols.addEventListener('input', () => this.update());
+            this.inRows.addEventListener('input', () => this.update());
+            this.inPitch.addEventListener('change', () => this.update());
+            this.update(); // Initial draw
+        }
+
+        update() {
+            let cols = parseInt(this.inCols.value) || 1;
+            let rows = parseInt(this.inRows.value) || 1;
+            
+            // Safety limits for rendering
+            if (cols > 50) cols = 50;
+            if (rows > 50) rows = 50;
+
+            const pitch = this.inPitch.value;
+            const resPerCab = this.pitches[pitch];
+
+            // Calculations
+            const totalResW = cols * resPerCab.w;
+            const totalResH = rows * resPerCab.h;
+            const totalDimW = (cols * this.cabinetW) / 1000; // mm to meters
+            const totalDimH = (rows * this.cabinetH) / 1000; // mm to meters
+            const totalCabinets = cols * rows;
+
+            // Update Dashboard
+            this.outRes.innerText = `${totalResW} x ${totalResH} px`;
+            this.outDim.innerText = `${totalDimW.toFixed(2)}m x ${totalDimH.toFixed(2)}m`;
+            this.outCab.innerText = totalCabinets;
+
+            // Draw Grid
+            this.grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+            this.grid.innerHTML = '';
+
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < totalCabinets; i++) {
+                const div = document.createElement('div');
+                div.className = 'led-cabinet';
+                if (this.isOutdoor) div.classList.add('outdoor');
+                fragment.appendChild(div);
+            }
+            this.grid.appendChild(fragment);
+        }
+    }
+
+    // Initialize Indoor (Generic 27" - 600x337.5mm)
+    new LedConfigurator('indoor', { w: 600, h: 337.5 }, {
+        "0.78": { w: 768, h: 432 }, "0.93": { w: 640, h: 360 }, "1.25": { w: 480, h: 270 },
+        "1.56": { w: 384, h: 216 }, "1.87": { w: 320, h: 180 }
+    });
+
+    // Initialize Outdoor (Standard 500x500mm)
+    new LedConfigurator('outdoor', { w: 500, h: 500 }, {
+        "3.9": { w: 128, h: 128 }, "4.8": { w: 104, h: 104 }, "6.67": { w: 75, h: 75 },
+        "10": { w: 50, h: 50 }, "16": { w: 31, h: 31 }
+    }, true);
+
+    // --- Interactive Ecosystem Cards ---
+    const ecosystemTriggers = document.querySelectorAll('.action-trigger');
+
+    ecosystemTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            const parent = this.closest('.ecosystem-item');
+            const list = parent.querySelector('.link-list');
+            
+            // 1. Fade out button
+            this.style.opacity = '0';
+            this.style.transform = 'scale(0.9)';
+            
+            // 2. Wait for transition, then swap
+            setTimeout(() => {
+                this.style.display = 'none';
+                list.style.display = 'flex';
+                
+                // 3. Trigger reflow & Fade in list
+                requestAnimationFrame(() => {
+                    list.style.opacity = '1';
+                    list.style.transform = 'translateY(0)';
+                });
+            }, 300); // Match CSS transition time
+        });
+    });
 });

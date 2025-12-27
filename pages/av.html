@@ -37,71 +37,233 @@
     <!-- Header / Hero -->
     <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/9d00ff?text=AV+Hero+Image');">
         <div class="container sub-hero-content">
-            <h1 class="typewriter-text">Audio <span class="accent">Visuals</span></h1>
-            <p class="hero-sub">Gear, setups & producties</p>
+            <h1 class="typewriter-text">PRO <span class="accent">AV</span></h1>
+            <p class="hero-sub">Quick links & tools</p>
         </div>
     </header>
 
-    <!-- Section 1: Featured Work (Video Grid) -->
-    <section class="section fade-in">
+    <!-- LED Wall Configurator Section -->
+    <section class="section fade-in" id="led-configurator">
         <div class="container">
-            <h2>Featured <span class="accent">Shots</span></h2>
-            <div class="grid-3">
-                <!-- Using existing media as placeholders -->
-                <div class="gallery-item" style="width: 100%; aspect-ratio: 16/9;">
-                    <video src="../assets/media/burnout.mp4" muted loop playsinline autoplay></video>
+            <h2>Indoor <span class="accent">LED</span> (16:9)</h2>
+            <div class="configurator-wrapper">
+                <!-- Controls & Dashboard -->
+                <div class="config-sidebar">
+                    <div class="config-group">
+                        <label for="indoor-pitch">Pixel Pitch</label>
+                        <select id="indoor-pitch">
+                            <option value="0.78">0.78mm (768 x 432 px)</option>
+                            <option value="0.93">0.93mm (640 x 360 px)</option>
+                            <option value="1.25" selected>1.25mm (480 x 270 px)</option>
+                            <option value="1.56">1.56mm (384 x 216 px)</option>
+                            <option value="1.87">1.87mm (320 x 180 px)</option>
+                        </select>
+                    </div>
+                    <div class="split-inputs">
+                        <div class="config-group">
+                            <label for="indoor-cols">Columns (Width)</label>
+                            <input type="number" id="indoor-cols" value="4" min="1" max="20">
+                        </div>
+                        <div class="config-group">
+                            <label for="indoor-rows">Rows (Height)</label>
+                            <input type="number" id="indoor-rows" value="3" min="1" max="20">
+                        </div>
+                    </div>
+
+                    <div class="config-dashboard">
+                        <div class="stat-item"><span class="stat-label">Total Resolution</span><span class="stat-value" id="indoor-res">1920 x 810 px</span></div>
+                        <div class="stat-item"><span class="stat-label">Dimensions</span><span class="stat-value" id="indoor-dim">2.40m x 1.01m</span></div>
+                        <div class="stat-item"><span class="stat-label">Total Cabinets</span><span class="stat-value" id="indoor-cab">12</span></div>
+                    </div>
                 </div>
-                <div class="gallery-item" style="width: 100%; aspect-ratio: 16/9;">
-                    <video src="../assets/media/pitbike.mp4" muted loop playsinline autoplay></video>
-                </div>
-                <div class="gallery-item" style="width: 100%; aspect-ratio: 16/9;">
-                    <img src="../assets/media/kawa-burn.JPG" style="object-fit: cover; width: 100%; height: 100%;">
-                </div>
+
+                <!-- Visualizer -->
+                <div class="config-visual"><div id="indoor-grid" class="led-grid"></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Gear Locker (Interactive List) -->
+    <!-- Outdoor Configurator -->
     <section class="section alt-bg fade-in">
         <div class="container">
-            <h2>The <span class="accent">Locker</span></h2>
-            <div class="gear-list" style="max-width: 800px; margin: 0 auto;">
-                <div class="gear-row">
-                    <strong>Sony A7 III</strong> <span>Main Body</span>
+            <h2>Outdoor <span class="accent">LED</span> (1:1)</h2>
+            <div class="configurator-wrapper">
+                <!-- Controls & Dashboard -->
+                <div class="config-sidebar">
+                    <div class="config-group">
+                        <label for="outdoor-pitch">Pixel Pitch</label>
+                        <select id="outdoor-pitch">
+                            <option value="3.9">3.9mm (128 x 128 px)</option>
+                            <option value="4.8">4.8mm (104 x 104 px)</option>
+                            <option value="6.67">6.67mm (75 x 75 px)</option>
+                            <option value="10">10mm (50 x 50 px)</option>
+                            <option value="16">16mm (31 x 31 px)</option>
+                        </select>
+                    </div>
+                    <div class="split-inputs">
+                        <div class="config-group">
+                            <label for="outdoor-cols">Columns (Width)</label>
+                            <input type="number" id="outdoor-cols" value="6" min="1" max="20">
+                        </div>
+                        <div class="config-group">
+                            <label for="outdoor-rows">Rows (Height)</label>
+                            <input type="number" id="outdoor-rows" value="4" min="1" max="20">
+                        </div>
+                    </div>
+
+                    <div class="config-dashboard">
+                        <div class="stat-item"><span class="stat-label">Total Resolution</span><span class="stat-value" id="outdoor-res">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Dimensions</span><span class="stat-value" id="outdoor-dim">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Total Cabinets</span><span class="stat-value" id="outdoor-cab">-</span></div>
+                    </div>
                 </div>
-                <div class="gear-row">
-                    <strong>Tamron 28-75mm f/2.8</strong> <span>Workhorse Lens</span>
-                </div>
-                <div class="gear-row">
-                    <strong>DJI Ronin SC</strong> <span>Stabilization</span>
-                </div>
-                <div class="gear-row">
-                    <strong>GoPro Hero 10</strong> <span>Action</span>
-                </div>
+
+                <!-- Visualizer -->
+                <div class="config-visual"><div id="outdoor-grid" class="led-grid"></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Section 3: Services -->
+    <!-- Useful Links / Resources -->
     <section class="section fade-in">
-        <div class="container" style="text-align: center;">
-            <h2><span class="accent">Services</span></h2>
-            <div class="grid-4">
-                <div class="card">
-                    <i class="fa-solid fa-video accent-icon"></i>
-                    <h3>Editing</h3>
+        <div class="container">
+            <h2>LED <span class="accent">Resources</span></h2>
+            <div class="resource-grid">
+                <a href="https://www.ledconfigurator.philips/" target="_blank" rel="noopener" class="resource-card">
+                    <i class="fa-regular fa-lightbulb"></i>
+                    <span>Philips LED</span>
+                </a>
+                <a href="https://www.liantronics.com/product-2.html" target="_blank" rel="noopener" class="resource-card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Liantronics</span>
+                </a>
+                <a href="https://www.absen.com/products/" target="_blank" rel="noopener" class="resource-card">
+                    <i class="fa-solid fa-cube"></i>
+                    <span>Absen</span>
+                </a>
+                <a href="https://www.unilumin.com/products/" target="_blank" rel="noopener" class="resource-card">
+                    <i class="fa-solid fa-border-all"></i>
+                    <span>Unilumin</span>
+                </a>
+                <a href="https://www.novastar.tech/product/product.html?catid=2" target="_blank" rel="noopener" class="resource-card featured-resource">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>Novastar Processors</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AV & UC Ecosystem -->
+    <section class="section alt-bg fade-in">
+        <div class="container">
+            <h2>AV & UC <span class="accent">Ecosystem</span></h2>
+            <div class="resource-grid">
+                <!-- Extron -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-toolbox"></i>
+                        <span>Extron Tools</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://www.extron.com/product/software/configurators" target="_blank" rel="noopener">Configurators</a></li>
+                        <li><a href="https://www.extron.com/download/drivers" target="_blank" rel="noopener">Drivers</a></li>
+                    </ul>
                 </div>
-                <div class="card">
-                    <i class="fa-solid fa-camera accent-icon"></i>
-                    <h3>Photography</h3>
+
+                <!-- Crestron -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-network-wired"></i>
+                        <span>Crestron NVX</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://www.crestron.com/Products/Video/DigitalMedia-NVX-Series" target="_blank" rel="noopener">NVX Series</a></li>
+                        <li><a href="https://www.crestron.com/en-US/Products/Control-Hardware-Software/Software/Software-Tools" target="_blank" rel="noopener">Toolbox</a></li>
+                    </ul>
                 </div>
-                <div class="card">
-                    <i class="fa-solid fa-clapperboard accent-icon"></i>
-                    <h3>Production</h3>
+
+                <!-- Biamp -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Biamp Tesira</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://www.biamp.com/products/tesira" target="_blank" rel="noopener">Tesira Server</a></li>
+                        <li><a href="https://support.biamp.com/" target="_blank" rel="noopener">Cornerstone</a></li>
+                    </ul>
                 </div>
-                <div class="card">
-                    <i class="fa-solid fa-sliders accent-icon"></i>
-                    <h3>Color Grading</h3>
+
+                <!-- Shure -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                        <span>Shure</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://www.shure.com/en-US/products/software/designer_software" target="_blank" rel="noopener">Designer</a></li>
+                        <li><a href="https://www.shure.com/en-US/products/microphones/mxa920" target="_blank" rel="noopener">MXA920</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sennheiser -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-microphone"></i>
+                        <span>Sennheiser</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://en-us.sennheiser.com/cockpit-control" target="_blank" rel="noopener">Cockpit Control</a></li>
+                        <li><a href="https://en-us.sennheiser.com/tcc2" target="_blank" rel="noopener">TCC2 Ceiling</a></li>
+                    </ul>
+                </div>
+
+                <!-- Logitech -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-video"></i>
+                        <span>Logitech MTR</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://prosupport.logi.com/hc/en-us" target="_blank" rel="noopener">Sync Portal</a></li>
+                        <li><a href="https://www.logitech.com/en-us/video-collaboration/products/rally-bar.html" target="_blank" rel="noopener">Rally Bar</a></li>
+                    </ul>
+                </div>
+
+                <!-- Yealink -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Yealink MTR</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://www.yealink.com/en/product-list/microsoft-teams-room-system" target="_blank" rel="noopener">MVC Series</a></li>
+                        <li><a href="https://support.yealink.com/en/portal/home" target="_blank" rel="noopener">Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- LG -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-tv"></i>
+                        <span>LG Displays</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://www.lg.com/us/business/commercial-displays" target="_blank" rel="noopener">Pro Displays</a></li>
+                        <li><a href="https://webos-signage.developer.lge.com/" target="_blank" rel="noopener">webOS Dev</a></li>
+                    </ul>
+                </div>
+
+                <!-- Samsung -->
+                <div class="ecosystem-item">
+                    <div class="resource-card action-trigger">
+                        <i class="fa-solid fa-display"></i>
+                        <span>Samsung Pro</span>
+                    </div>
+                    <ul class="link-list">
+                        <li><a href="https://displaysolutions.samsung.com/" target="_blank" rel="noopener">Display Solutions</a></li>
+                        <li><a href="https://vxt.samsung.com/" target="_blank" rel="noopener">VXT CMS</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -112,9 +274,9 @@
         <div class="container footer-content">
             <p>Made with lot's of <i class="fa-solid fa-mug-hot"></i> by <strong>Robin Kali</strong>.</p>
             <div class="socials">
-                <a href="https://www.linkedin.com/in/robin-kalaykhan-4b2443153/"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/RobinKali"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.instagram.com/robinxkali/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/robin-kalaykhan-4b2443153/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/RobinKali" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/robinxkali/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
