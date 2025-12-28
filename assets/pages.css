@@ -38,6 +38,7 @@ body.page-sim {
     position: relative;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     overflow: hidden;
 }
 
