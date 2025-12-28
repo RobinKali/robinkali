@@ -336,4 +336,135 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300); // Match CSS transition time
         });
     });
+
+    // --- AV Page Hero Animation (Interactive Code Background) ---
+    const avHeroBg = document.getElementById('hero-code-bg');
+    if (avHeroBg) {
+        const snippets = [
+            'AudioContext.resume()', 'navigator.mediaDevices', 'DMX512.connect()', 
+            'HDMI_SIGNAL: TRUE', '4K_60Hz_HDR', 'Gain: +6dB', 
+            'TCP/IP: Connected', 'Latency: <1ms', 'Buffer: 1024', 
+            'SampleRate: 48000', 'FFmpeg.encode()', 'WebGL.render()',
+            'Signal_Flow: OK', 'Matrix.route(1, 4)', 'Phantom_Power: ON',
+            'EDID_Handshake', 'H.264 Stream', 'Bitrate: 12Mbps'
+        ];
+
+        const snippetElements = [];
+        const snippetCount = window.innerWidth < 768 ? 10 : 20; // Minder items op mobiel
+
+        // 1. Generate Snippets
+        for (let i = 0; i < snippetCount; i++) {
+            const span = document.createElement('span');
+            span.classList.add('code-snippet');
+            span.innerText = snippets[Math.floor(Math.random() * snippets.length)];
+            
+            // Random Positionering
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            const depth = Math.random(); // Voor parallax snelheid
+            
+            span.style.left = `${left}%`;
+            span.style.top = `${top}%`;
+            span.dataset.depth = depth; // Opslaan voor parallax
+            
+            avHeroBg.appendChild(span);
+            snippetElements.push(span);
+        }
+
+        // 2. Mouse Interaction (Parallax & Proximity)
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        // Alleen parallax op desktop/muis apparaten
+        if (window.matchMedia("(hover: hover)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) - 0.5;
+                mouseY = (e.clientY / window.innerHeight) - 0.5;
+
+                requestAnimationFrame(() => {
+                    snippetElements.forEach(el => {
+                        const depth = parseFloat(el.dataset.depth);
+                        const moveX = mouseX * depth * 300; // Meer beweging
+                        const moveY = mouseY * depth * 300;
+                        el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+                });
+            });
+        }
+
+        // 3. Random Highlight Animation (Mobile & Desktop Idle)
+        // Laat af en toe een snippet oplichten alsof er data verwerkt wordt
+        const highlightRandomSnippet = () => {
+            // Verwijder oude highlights
+            snippetElements.forEach(el => el.classList.remove('highlight'));
+            
+            // Kies random aantal (1 tot 3)
+            const count = Math.floor(Math.random() * 3) + 1;
+            
+            for(let i=0; i<count; i++) {
+                const randomEl = snippetElements[Math.floor(Math.random() * snippetElements.length)];
+                randomEl.classList.add('highlight');
+                
+                // Verwijder highlight na korte tijd
+                setTimeout(() => {
+                    randomEl.classList.remove('highlight');
+                }, Math.random() * 1000 + 500);
+            }
+        };
+
+        // Start de loop
+        setInterval(highlightRandomSnippet, 2000);
+    }
+
+    // --- Global Typewriter Effect for H1 & H2 ---
+    const typeWriterElements = document.querySelectorAll('h1, h2');
+    
+    const typeWriterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const chars = element.querySelectorAll('.type-char');
+                
+                setTimeout(() => {
+                    chars.forEach((char, index) => {
+                        setTimeout(() => {
+                            char.style.opacity = '1';
+                        }, 75 * index); // Iets langzamer (75ms)
+                    });
+                }, 250); // Startvertraging voor betere timing met fade-in
+                
+                typeWriterObserver.unobserve(element);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    typeWriterElements.forEach(el => {
+        // Zorg dat element zichtbaar is (voor het geval CSS het verbergt)
+        el.style.opacity = '1';
+
+        const wrapTextNodes = (node) => {
+            if (node.nodeType === 3) { // Text node
+                const text = node.nodeValue;
+                if (!text.trim()) return; // Skip witruimte
+                
+                const fragment = document.createDocumentFragment();
+                [...text].forEach(char => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = 'type-char';
+                    span.style.opacity = '0';
+                    span.style.transition = 'opacity 0.1s';
+                    fragment.appendChild(span);
+                });
+                node.replaceWith(fragment);
+            } else {
+                [...node.childNodes].forEach(wrapTextNodes);
+            }
+        };
+
+        // Verwerk de tekstnodes zonder de HTML structuur (zoals .accent spans) te breken
+        [...el.childNodes].forEach(wrapTextNodes);
+        
+        typeWriterObserver.observe(el);
+    });
 });
