@@ -39,11 +39,12 @@
         <div class="container sub-hero-content">
             <h1 class="typewriter-text">Web <span class="accent">Development</span></h1>
             <p class="hero-sub">Projecten, code & design</p>
+            <a href="#start" class="cyber-hero-btn">RUN_CODE <i class="fa-solid fa-chevron-down"></i></a>
         </div>
     </header>
 
     <!-- Section 1: Tech Stack (Floating Icons) -->
-    <section class="section fade-in">
+    <section id="start" class="section fade-in">
         <div class="container">
             <h2>Tech <span class="accent">Stack</span></h2>
             <div class="tech-stack">
@@ -58,12 +59,25 @@
         </div>
     </section>
 
-    <!-- Section 2: Projects -->
+    <!-- Section 2: Philosophy -->
+    <section class="section fade-in">
+        <div class="container split-layout">
+            <div>
+                <h2>Code <span class="accent">Philosophy</span></h2>
+                <p>Clean, semantic, and performant. I believe in building web experiences that are accessible and delightful to use.</p>
+            </div>
+            <div style="font-size: 10rem; color: var(--bg-alt); text-align: center;">
+                <i class="fa-solid fa-code"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Projects -->
     <section class="section alt-bg fade-in">
         <div class="container">
-            <h2>Recent <span class="accent">Projects</span></h2>
+            <h2>More coming <span class="accent">Soon</span></h2>
             <div class="project-grid">
-                <article class="project-card">
+                <!-- <article class="project-card">
                     <div class="project-thumb"></div>
                     <div class="project-info">
                         <h3>Portfolio V1</h3>
@@ -82,20 +96,7 @@
                             <span>React</span><span>ChartJS</span>
                         </div>
                     </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Philosophy -->
-    <section class="section fade-in">
-        <div class="container split-layout">
-            <div>
-                <h2>Code <span class="accent">Philosophy</span></h2>
-                <p>Clean, semantic, and performant. I believe in building web experiences that are accessible and delightful to use.</p>
-            </div>
-            <div style="font-size: 10rem; color: var(--bg-alt); text-align: center;">
-                <i class="fa-solid fa-code"></i>
+                </article> -->
             </div>
         </div>
     </section>
@@ -115,6 +116,13 @@
     <a href="#" id="back-to-top" class="back-to-top" aria-label="Terug naar boven">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
+
+    <!-- Lightbox Container -->
+    <div id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox">
+        <video id="lightbox-video" controls style="display:none;"></video>
+    </div>
 
     <script src="../assets/script.js"></script>
 </body>

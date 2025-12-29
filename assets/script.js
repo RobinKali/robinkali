@@ -187,11 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxVideo = document.getElementById('lightbox-video');
     const closeBtn = document.querySelector('.lightbox-close');
-    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video, .social-image-container img');
+    // Selecteer img tags én divs die als afbeelding dienen (background-image)
+    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video, .social-image-container img, .card-image, .rig-visual, .project-thumb, .section img');
 
     if (lightbox) {
         // Open Lightbox
         galleryItems.forEach(item => {
+            item.style.cursor = 'pointer'; // Laat zien dat het klikbaar is
             item.addEventListener('click', () => {
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Voorkom scrollen op body
@@ -209,6 +211,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     lightboxVideo.muted = false; 
                     lightboxVideo.controls = true;
                     lightboxVideo.play();
+                } else if (item.tagName === 'DIV') {
+                    // Haal URL uit background-image: url("...")
+                    const style = window.getComputedStyle(item);
+                    const bg = style.backgroundImage;
+                    // Strip url(" en ")
+                    const src = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+                    
+                    lightboxImg.src = src;
+                    lightboxImg.style.display = 'block';
+                    lightboxVideo.style.display = 'none';
+                    lightboxVideo.pause();
                 }
             });
         });
@@ -419,6 +432,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Global Typewriter Effect for H1 & H2 ---
     const typeWriterElements = document.querySelectorAll('h1, h2');
     
+    // Check of we op een pagina zijn met een eigen identiteit (Bikes, AV, Sim)
+    // Zo ja, dan slaan we de JS-char-fade over zodat de CSS-animaties (Slide/Glitch/Zoom) hun werk kunnen doen.
+    const hasCustomIdentity = document.body.classList.contains('page-bikes') || 
+                              document.body.classList.contains('page-av') || 
+                              document.body.classList.contains('page-sim');
+
+    
     const typeWriterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -438,6 +458,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
+    // Voer alleen uit op Index en Web (of pagina's zonder custom identity)
+    if (!hasCustomIdentity) {
     typeWriterElements.forEach(el => {
         // Zorg dat element zichtbaar is (voor het geval CSS het verbergt)
         el.style.opacity = '1';
@@ -467,4 +489,5 @@ document.addEventListener('DOMContentLoaded', () => {
         
         typeWriterObserver.observe(el);
     });
+    }
 });

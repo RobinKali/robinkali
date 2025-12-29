@@ -36,12 +36,13 @@
 
     <header class="sub-hero" style="background-image: url('../assets/media/636-resized.JPG');">
         <div class="container sub-hero-content">
-            <h1 class="typewriter-text">Bike<span class="accent">Life</span></h1>
+            <h1>Bike<span class="accent">Life</span></h1>
             <p class="hero-sub">Garage updates</p>
+            <a href="#start" class="cyber-hero-btn">START_ENGINE <i class="fa-solid fa-chevron-down"></i></a>
         </div>
     </header>
 
-    <section class="section fade-in">
+    <section id="start" class="section fade-in">
         <div class="container">
             <h2>The <span class="accent">Garage</span></h2>
             <div class="grid-3">
@@ -106,6 +107,13 @@
     <a href="#" id="back-to-top" class="back-to-top" aria-label="Terug naar boven">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
+
+    <!-- Lightbox Container -->
+    <div id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox">
+        <video id="lightbox-video" controls style="display:none;"></video>
+    </div>
 
     <script src="../assets/script.js"></script>
 </body>

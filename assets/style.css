@@ -1,4 +1,6 @@
 /* --- CSS Variables & Reset --- */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;0,900;1,700&family=Rajdhani:wght@500;600;700&family=Russo+One&display=swap');
+
 :root {
     /* Dark Mode (Default) - Cyberpunk/Code Vibe */
     --bg-color: #1a1a2e;
@@ -39,6 +41,7 @@ body.light-mode {
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px; /* Voorkomt dat content onder de sticky header verdwijnt */
+    overflow-x: hidden;
 }
 
 body {
@@ -70,6 +73,25 @@ ul {
 h1, h2, h3 {
     font-family: var(--font-mono);
     margin-bottom: 1rem;
+    display: table; /* Zorgt dat de breedte om de tekst sluit voor het effect */
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--accent-color); /* De cursor */
+    max-width: 0; /* Start onzichtbaar */
+    animation: typing 2s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+/* Reset animatie voor elementen in fade-in secties totdat ze zichtbaar zijn */
+.fade-in:not(.show) h1, .fade-in:not(.show) h2, .fade-in:not(.show) h3 {
+    animation: none;
+    max-width: 0;
+}
+
+/* Zorg dat de ondertitel in de hero pas begint na de hoofdtitel */
+.hero h2 {
+    animation-delay: 1.5s;
 }
 
 .accent {
@@ -141,6 +163,27 @@ h1, h2, h3 {
 
 .nav-links a:hover, .nav-links a.active {
     color: var(--accent-color);
+}
+
+/* Menu Colors per Section (Individual Hover Colors) */
+.nav-links a[href*="bikes"]:hover, .nav-links a[href*="bikes"].active {
+    color: #ccff00;
+    text-shadow: 0 0 10px rgba(204, 255, 0, 0.4);
+}
+
+.nav-links a[href*="av"]:hover, .nav-links a[href*="av"].active {
+    color: #9d00ff;
+    text-shadow: 0 0 10px rgba(157, 0, 255, 0.4);
+}
+
+.nav-links a[href*="web"]:hover, .nav-links a[href*="web"].active {
+    color: #1a9bc1;
+    text-shadow: 0 0 10px rgba(26, 155, 193, 0.4);
+}
+
+.nav-links a[href*="sim"]:hover, .nav-links a[href*="sim"].active {
+    color: #ff003c;
+    text-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
 }
 
 .nav-controls {
@@ -405,6 +448,17 @@ footer {
     transform: translateY(0);
 }
 
+/* --- Typewriter Keyframes --- */
+@keyframes typing {
+    from { max-width: 0 }
+    to { max-width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-color) }
+}
+
 /* --- Keyframes --- */
 @keyframes heroEntry {
     0% { opacity: 0; transform: translateY(-20px); }
@@ -565,3 +619,49 @@ body.light-mode .back-to-top {
 .btn-av    { --accent-color: #9d00ff; }
 .btn-web   { --accent-color: #1a9bc1; }
 .btn-sim   { --accent-color: #ff003c; }
+
+/* --- Lightbox --- */
+#lightbox {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+#lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#lightbox img, #lightbox video {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 1px solid var(--accent-color);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 2001;
+}
+
+.lightbox-close:hover {
+    color: var(--accent-color);
+}

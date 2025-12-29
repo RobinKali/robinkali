@@ -37,23 +37,45 @@
     <!-- Header / Hero -->
     <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/ff003c?text=Sim+Hero+Image');">
         <div class="container sub-hero-content">
-            <h1 class="typewriter-text">Sim <span class="accent">Racing</span></h1>
-            <p class="hero-sub">Rigs, hardware & lap times</p>
+            <h1>Sim<span class="accent">Racing</span></h1>
+            <p class="hero-sub">Rig showcase, lap times & livestreams</p>
+            <a href="#start" class="cyber-hero-btn">START_SESSION <i class="fa-solid fa-chevron-down"></i></a>
         </div>
     </header>
 
     <!-- Section 1: The Rig (Hardware) -->
-    <section class="section fade-in">
+    <section id="start" class="section fade-in">
         <div class="container">
             <h2>The <span class="accent">Rig</span></h2>
-            <div class="split-layout">
-                <div class="gear-list">
-                    <div class="gear-row"><strong>Wheelbase</strong> <span>Fanatec CSL DD (8nm)</span></div>
-                    <div class="gear-row"><strong>Pedals</strong> <span>Fanatec V3 Inverted</span></div>
-                    <div class="gear-row"><strong>Cockpit</strong> <span>SimLab P1-X</span></div>
-                    <div class="gear-row"><strong>Monitor</strong> <span>Samsung G9 Odyssey</span></div>
+            <div class="rig-showcase">
+                <div class="rig-visual" style="background-image: url('../assets/media/hyper-resized.JPG');"></div>
+                <div class="rig-specs">
+                    <div class="tech-card">
+                        <span class="tech-label">Cockpit</span>
+                        <span class="tech-value">Next Level Racing F-GT</span>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-label">Wheelbase</span>
+                        <span class="tech-value">Thrustmaster T598</span>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-label">Wheel</span>
+                        <span class="tech-value">Ferrari 599XX EVO 30 </span>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-label">Pedals</span>
+                        <span class="tech-value">Thrustmaster T-LCM w/ haptics</span>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-label">Shifter/Handbrake</span>
+                        <span class="tech-value">Thrustmaster x Sparco TSS</span>
+                    </div>
+                    <div class="tech-card">
+                        <span class="tech-label">Monitor</span>
+                        <span class="tech-value">Hisense 55" 4K/120Hz MiniLED</span>
+                    </div>
+
                 </div>
-                <div class="card-image" style="background-image: url('../assets/media/hyper-resized.JPG'); min-height: 300px; border-radius: 8px;"></div>
             </div>
         </div>
     </section>
@@ -99,6 +121,13 @@
     <a href="#" id="back-to-top" class="back-to-top" aria-label="Terug naar boven">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
+
+    <!-- Lightbox Container -->
+    <div id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox">
+        <video id="lightbox-video" controls style="display:none;"></video>
+    </div>
 
     <script src="../assets/script.js"></script>
 </body>
