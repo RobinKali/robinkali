@@ -46,7 +46,8 @@ body.page-sim {
 
 .page-bikes h1, .page-bikes h2, .page-bikes h3, .page-bikes .fade-in:not(.show) h1, .page-bikes .fade-in:not(.show) h2, .page-bikes .fade-in:not(.show) h3,
 .page-av h1, .page-av h2, .page-av h3, .page-av .fade-in:not(.show) h1, .page-av .fade-in:not(.show) h2, .page-av .fade-in:not(.show) h3,
-.page-sim h1, .page-sim h2, .page-sim h3, .page-sim .fade-in:not(.show) h1, .page-sim .fade-in:not(.show) h2, .page-sim .fade-in:not(.show) h3 {
+.page-sim h1, .page-sim h2, .page-sim h3, .page-sim .fade-in:not(.show) h1, .page-sim .fade-in:not(.show) h2, .page-sim .fade-in:not(.show) h3,
+.page-home h1 {
     font-family: var(--font-headers);
     border-right: none;      /* Geen cursor */
     white-space: normal;     /* Normale text wrap */
@@ -61,6 +62,26 @@ body.page-sim {
 /* Pas body fonts aan voor leesbaarheid */
 .page-bikes, .page-av, .page-sim {
     font-family: var(--font-main);
+}
+
+/* --- 0. HOME IDENTITY: Cyber Glitch --- */
+.page-home h1 {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: homeGlitch 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes homeGlitch {
+    0% { opacity: 0; transform: scale(1.1); filter: blur(10px); }
+    20% { opacity: 1; transform: scale(1); filter: blur(0); }
+    40% { text-shadow: 2px 0 var(--accent-color), -2px 0 red; transform: translateX(-2px); }
+    50% { text-shadow: -2px 0 var(--accent-color), 2px 0 red; transform: translateX(2px); }
+    60% { text-shadow: none; transform: translateX(0); }
+    70% { opacity: 0.8; }
+    80% { opacity: 1; }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 /* --- 1. BIKES IDENTITY: Speed & Aggression --- */

@@ -436,7 +436,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Zo ja, dan slaan we de JS-char-fade over zodat de CSS-animaties (Slide/Glitch/Zoom) hun werk kunnen doen.
     const hasCustomIdentity = document.body.classList.contains('page-bikes') || 
                               document.body.classList.contains('page-av') || 
-                              document.body.classList.contains('page-sim');
+                              document.body.classList.contains('page-sim') ||
+                              document.body.classList.contains('page-home');
 
     
     const typeWriterObserver = new IntersectionObserver((entries) => {

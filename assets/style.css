@@ -89,11 +89,6 @@ h1, h2, h3 {
     max-width: 0;
 }
 
-/* Zorg dat de ondertitel in de hero pas begint na de hoofdtitel */
-.hero h2 {
-    animation-delay: 1.5s;
-}
-
 .accent {
     color: var(--accent-color);
 }
