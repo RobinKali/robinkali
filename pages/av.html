@@ -15,11 +15,11 @@
         <div class="container nav-container">
             <a href="../index.html" class="logo">robinkali<span class="accent">.nl</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#home">Start</a></li>
-                <li><a href="bikes.html">Bike</a></li>
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="bikes.html">Bikes</a></li>
                 <li><a href="av.html" class="active">AV</a></li>
-                <li><a href="web.html">Web</a></li>
-                <li><a href="sim.html">Sim</a></li>
+                <li><a href="web.html">Webdesign</a></li>
+                <li><a href="sim.html">Simracing</a></li>
             </ul>
             <div class="nav-controls">
                 <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
@@ -44,90 +44,8 @@
         </div>
     </header>
 
-    <!-- LED Wall Configurator Section -->
-    <section id="start" class="section fade-in">
-        <div class="container">
-            <h2>Indoor <span class="accent">LED</span> (16:9)</h2>
-            <div class="configurator-wrapper">
-                <!-- Controls & Dashboard -->
-                <div class="config-sidebar">
-                    <div class="config-group">
-                        <label for="indoor-pitch">Pixel Pitch</label>
-                        <select id="indoor-pitch">
-                            <option value="0.78">0.78mm (768 x 432 px)</option>
-                            <option value="0.93">0.93mm (640 x 360 px)</option>
-                            <option value="1.25" selected>1.25mm (480 x 270 px)</option>
-                            <option value="1.56">1.56mm (384 x 216 px)</option>
-                            <option value="1.87">1.87mm (320 x 180 px)</option>
-                        </select>
-                    </div>
-                    <div class="split-inputs">
-                        <div class="config-group">
-                            <label for="indoor-cols">Columns (Width)</label>
-                            <input type="number" id="indoor-cols" value="4" min="1" max="20">
-                        </div>
-                        <div class="config-group">
-                            <label for="indoor-rows">Rows (Height)</label>
-                            <input type="number" id="indoor-rows" value="3" min="1" max="20">
-                        </div>
-                    </div>
-
-                    <div class="config-dashboard">
-                        <div class="stat-item"><span class="stat-label">Total Resolution</span><span class="stat-value" id="indoor-res">1920 x 810 px</span></div>
-                        <div class="stat-item"><span class="stat-label">Dimensions</span><span class="stat-value" id="indoor-dim">2.40m x 1.01m</span></div>
-                        <div class="stat-item"><span class="stat-label">Total Cabinets</span><span class="stat-value" id="indoor-cab">12</span></div>
-                    </div>
-                </div>
-
-                <!-- Visualizer -->
-                <div class="config-visual"><div id="indoor-grid" class="led-grid"></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outdoor Configurator -->
-    <section class="section alt-bg fade-in">
-        <div class="container">
-            <h2>Outdoor <span class="accent">LED</span> (1:1)</h2>
-            <div class="configurator-wrapper">
-                <!-- Controls & Dashboard -->
-                <div class="config-sidebar">
-                    <div class="config-group">
-                        <label for="outdoor-pitch">Pixel Pitch</label>
-                        <select id="outdoor-pitch">
-                            <option value="3.9">3.9mm (128 x 128 px)</option>
-                            <option value="4.8">4.8mm (104 x 104 px)</option>
-                            <option value="6.67">6.67mm (75 x 75 px)</option>
-                            <option value="10">10mm (50 x 50 px)</option>
-                            <option value="16">16mm (31 x 31 px)</option>
-                        </select>
-                    </div>
-                    <div class="split-inputs">
-                        <div class="config-group">
-                            <label for="outdoor-cols">Columns (Width)</label>
-                            <input type="number" id="outdoor-cols" value="6" min="1" max="20">
-                        </div>
-                        <div class="config-group">
-                            <label for="outdoor-rows">Rows (Height)</label>
-                            <input type="number" id="outdoor-rows" value="4" min="1" max="20">
-                        </div>
-                    </div>
-
-                    <div class="config-dashboard">
-                        <div class="stat-item"><span class="stat-label">Total Resolution</span><span class="stat-value" id="outdoor-res">-</span></div>
-                        <div class="stat-item"><span class="stat-label">Dimensions</span><span class="stat-value" id="outdoor-dim">-</span></div>
-                        <div class="stat-item"><span class="stat-label">Total Cabinets</span><span class="stat-value" id="outdoor-cab">-</span></div>
-                    </div>
-                </div>
-
-                <!-- Visualizer -->
-                <div class="config-visual"><div id="outdoor-grid" class="led-grid"></div></div>
-            </div>
-        </div>
-    </section>
-
     <!-- Useful Links / Resources -->
-    <section class="section fade-in">
+    <section id="start" class="section fade-in">
         <div class="container">
             <h2>LED <span class="accent">Resources</span></h2>
             <div class="resource-grid">
@@ -279,6 +197,95 @@
                         <li><a href="https://vxt.samsung.com/" target="_blank" rel="noopener">VXT CMS</a></li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Useful Links / Resources -->
+    <section id="start" class="section fade-in">
+        <div class="container">
+            <h1><span class="accent">LED </span>tools<i class="fa-solid fa-chevron-down"></i></h1>
+        </div>
+    </section>
+
+    <!-- LED Wall Configurator Section -->
+    <section class="section fade-in">
+        <div class="container">
+            <h2>Indoor <span class="accent">LED</span> (16:9)</h2>
+            <div class="configurator-wrapper">
+                <!-- Controls & Dashboard -->
+                <div class="config-sidebar">
+                    <div class="config-group">
+                        <label for="indoor-pitch">Pixel Pitch</label>
+                        <select id="indoor-pitch">
+                            <option value="0.78">0.78mm (768 x 432 px)</option>
+                            <option value="0.93">0.93mm (640 x 360 px)</option>
+                            <option value="1.25" selected>1.25mm (480 x 270 px)</option>
+                            <option value="1.56">1.56mm (384 x 216 px)</option>
+                            <option value="1.87">1.87mm (320 x 180 px)</option>
+                        </select>
+                    </div>
+                    <div class="split-inputs">
+                        <div class="config-group">
+                            <label for="indoor-cols">Columns (Width)</label>
+                            <input type="number" id="indoor-cols" value="4" min="1" max="20">
+                        </div>
+                        <div class="config-group">
+                            <label for="indoor-rows">Rows (Height)</label>
+                            <input type="number" id="indoor-rows" value="3" min="1" max="20">
+                        </div>
+                    </div>
+
+                    <div class="config-dashboard">
+                        <div class="stat-item"><span class="stat-label">Total Resolution</span><span class="stat-value" id="indoor-res">1920 x 810 px</span></div>
+                        <div class="stat-item"><span class="stat-label">Dimensions</span><span class="stat-value" id="indoor-dim">2.40m x 1.01m</span></div>
+                        <div class="stat-item"><span class="stat-label">Total Cabinets</span><span class="stat-value" id="indoor-cab">12</span></div>
+                    </div>
+                </div>
+
+                <!-- Visualizer -->
+                <div class="config-visual"><div id="indoor-grid" class="led-grid"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outdoor Configurator -->
+    <section class="section fade-in">
+        <div class="container">
+            <h2>Outdoor <span class="accent">LED</span> (1:1)</h2>
+            <div class="configurator-wrapper">
+                <!-- Controls & Dashboard -->
+                <div class="config-sidebar">
+                    <div class="config-group">
+                        <label for="outdoor-pitch">Pixel Pitch</label>
+                        <select id="outdoor-pitch">
+                            <option value="3.9">3.9mm (128 x 128 px)</option>
+                            <option value="4.8">4.8mm (104 x 104 px)</option>
+                            <option value="6.67">6.67mm (75 x 75 px)</option>
+                            <option value="10">10mm (50 x 50 px)</option>
+                            <option value="16">16mm (31 x 31 px)</option>
+                        </select>
+                    </div>
+                    <div class="split-inputs">
+                        <div class="config-group">
+                            <label for="outdoor-cols">Columns (Width)</label>
+                            <input type="number" id="outdoor-cols" value="6" min="1" max="20">
+                        </div>
+                        <div class="config-group">
+                            <label for="outdoor-rows">Rows (Height)</label>
+                            <input type="number" id="outdoor-rows" value="4" min="1" max="20">
+                        </div>
+                    </div>
+
+                    <div class="config-dashboard">
+                        <div class="stat-item"><span class="stat-label">Total Resolution</span><span class="stat-value" id="outdoor-res">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Dimensions</span><span class="stat-value" id="outdoor-dim">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Total Cabinets</span><span class="stat-value" id="outdoor-cab">-</span></div>
+                    </div>
+                </div>
+
+                <!-- Visualizer -->
+                <div class="config-visual"><div id="outdoor-grid" class="led-grid"></div></div>
             </div>
         </div>
     </section>
