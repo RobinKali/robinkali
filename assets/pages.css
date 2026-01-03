@@ -922,3 +922,258 @@ input:focus {
     border-color: var(--accent-color);
     transform: translateX(5px);
 }
+
+/* --- CSS Reactor Core Showcase --- */
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.css-showcase-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 0;
+    width: 100%;
+    perspective: 1000px;
+    /* Essential for 3D effect */
+}
+
+/* Container limits hover area and centers the core */
+.reactor-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    margin-bottom: 3rem;
+}
+
+/* --- The Core (Energy Sphere) --- */
+.reactor-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--accent-color));
+    box-shadow:
+        0 0 30px var(--accent-color),
+        0 0 60px var(--accent-color),
+        inset 0 0 20px rgba(255, 255, 255, 0.5);
+    z-index: 10;
+    animation: corePulse 4s infinite ease-in-out;
+}
+
+/* --- The Rings (Gyroscopes) --- */
+.reactor-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--accent-color);
+    border-bottom: 4px solid var(--accent-color);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.2);
+}
+
+.ring-1 {
+    width: 220px;
+    height: 220px;
+    animation: spinX 8s infinite linear;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--accent-color);
+    border-right: 4px solid var(--accent-color);
+}
+
+.ring-2 {
+    width: 180px;
+    height: 180px;
+    animation: spinY 6s infinite linear;
+}
+
+.ring-3 {
+    width: 140px;
+    height: 140px;
+    animation: spinZ 10s infinite linear;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* --- Interactive States (Hover) --- */
+.reactor-container:hover .reactor-core {
+    animation: coreUnstable 0.5s infinite alternate;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff003c);
+    /* Shift to Red */
+    box-shadow:
+        0 0 50px #ff003c,
+        0 0 100px #ff003c,
+        inset 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.reactor-container:hover .ring-1 {
+    animation-duration: 2s;
+    border-color: #ff003c;
+}
+
+.reactor-container:hover .ring-2 {
+    animation-duration: 1.5s;
+    border-color: #ff003c;
+}
+
+.reactor-container:hover .ring-3 {
+    animation-duration: 2.5s;
+}
+
+/* --- Particles --- */
+.reactor-particles span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.reactor-container:hover .reactor-particles span {
+    animation: particleFly 1s linear infinite;
+}
+
+/* Staggered particle starts */
+.reactor-particles span:nth-child(1) {
+    transform: rotate(0deg) translate(50px);
+    animation-delay: 0s;
+}
+
+.reactor-particles span:nth-child(2) {
+    transform: rotate(72deg) translate(60px);
+    animation-delay: 0.2s;
+}
+
+.reactor-particles span:nth-child(3) {
+    transform: rotate(144deg) translate(50px);
+    animation-delay: 0.4s;
+}
+
+.reactor-particles span:nth-child(4) {
+    transform: rotate(216deg) translate(70px);
+    animation-delay: 0.6s;
+}
+
+.reactor-particles span:nth-child(5) {
+    transform: rotate(288deg) translate(40px);
+    animation-delay: 0.8s;
+}
+
+/* --- Info Badge --- */
+.css-stats {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.code-badge {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background: #000;
+    color: #0f0;
+    /* Matrix Green */
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #0f0;
+}
+
+/* --- Keyframes --- */
+@keyframes spinX {
+    0% {
+        transform: translate(-50%, -50%) rotateX(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotateX(360deg);
+    }
+}
+
+@keyframes spinY {
+    0% {
+        transform: translate(-50%, -50%) rotateY(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotateY(360deg);
+    }
+}
+
+@keyframes spinZ {
+    0% {
+        transform: translate(-50%, -50%) rotateZ(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+}
+
+@keyframes corePulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes coreUnstable {
+    0% {
+        transform: translate(-50%, -50%) scale(1) translate(1px, 1px);
+    }
+
+    25% {
+        transform: translate(-50%, -50%) scale(1.1) translate(-1px, 2px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(0.9) translate(-2px, -1px);
+    }
+
+    75% {
+        transform: translate(-50%, -50%) scale(1.05) translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1) translate(-1px, 0px);
+    }
+}
+
+@keyframes particleFly {
+    0% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(150px) scale(0);
+        opacity: 0;
+    }
+}
