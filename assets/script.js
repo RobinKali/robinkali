@@ -1,13 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // --- Page Fade-in ---
     setTimeout(() => {
         document.body.classList.add('loaded');
     }, 50);
 
+    // --- PWA Service Worker Registration ---
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
+
     // --- Back to Top Button ---
     const backToTopBtn = document.getElementById('back-to-top');
-    
+
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
@@ -38,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleBtn.addEventListener('click', () => {
         body.classList.toggle('light-mode');
-        
+
         // Update Icon & Storage
         if (body.classList.contains('light-mode')) {
             localStorage.setItem('theme', 'light');
@@ -94,10 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = contactForm.querySelector('button');
             const originalText = btn.innerText;
-            
+
             btn.innerText = 'Verzonden! 🚀';
             btn.style.backgroundColor = 'var(--accent-hover)';
-            
+
             setTimeout(() => {
                 contactForm.reset();
                 btn.innerText = originalText;
@@ -108,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Separator Parallax & Trigger Logic ---
     const separators = document.querySelectorAll('.separator-section');
-    
+
     if (separators.length > 0) {
         // Gebruik requestAnimationFrame voor performance tijdens scrollen
         let ticking = false;
@@ -124,27 +137,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Bereken wanneer de onderkant van de viewport 75% van de afbeelding heeft bereikt
                         // rect.top is de afstand van de bovenkant van de viewport tot de bovenkant van het element.
                         // Als rect.top + (elementHeight * 0.75) < windowHeight, dan hebben we 75% gehad.
-                        
+
                         const title = sep.querySelector('.floating-title');
                         if (title) {
                             // Trigger punt: als 75% van de hoogte voorbij de onderkant van het scherm is
                             // Of simpeler: als de gebruiker ver genoeg gescrolld is dat de afbeelding dominant is geweest.
                             // We gebruiken hier: Als de bovenkant van de afbeelding boven de 25% lijn van de viewport zit (dus 75% scrollruimte over).
                             // Of strikt volgens prompt: "over 75% van de afbeelding is gescrolt".
-                            
+
                             // Formule: Percentage zichtbaar vanaf onderkant viewport
                             // Progressie = (windowHeight - rect.top) / elementHeight
                             // Maar we willen weten of we 'voorbij' 75% zijn.
-                            
+
                             // Laten we het visueel maken: Als de afbeelding bijna het scherm verlaat aan de bovenkant, of als hij vol in beeld is.
                             // Interpretatie: De tekst verschijnt als climax wanneer je de afbeelding goed bekeken hebt.
-                            
+
                             // Trigger als de bovenkant van de sectie de bovenste helft van het scherm nadert (gebruiker heeft er doorheen gescrolld)
                             // Of: trigger als 75% van de afbeelding zichtbaar is geworden.
-                            
+
                             // Implementatie prompt: "over 75% gescrolt" -> We meten progressie door het element.
                             const scrollProgress = (windowHeight - rect.top) / (windowHeight + elementHeight);
-                            
+
                             // Als we op 50% van de totale animatie-tijd (door het element heen) zitten, is het vaak mooist.
                             // Maar voor "75% van de afbeelding":
                             // Laten we checken of de onderkant van de viewport voorbij 75% van de afbeelding is.
@@ -208,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     lightboxVideo.style.display = 'block';
                     lightboxImg.style.display = 'none';
                     // In lightbox willen we geluid en controls
-                    lightboxVideo.muted = false; 
+                    lightboxVideo.muted = false;
                     lightboxVideo.controls = true;
                     lightboxVideo.play();
                 } else if (item.tagName === 'DIV') {
@@ -217,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const bg = style.backgroundImage;
                     // Strip url(" en ")
                     const src = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-                    
+
                     lightboxImg.src = src;
                     lightboxImg.style.display = 'block';
                     lightboxVideo.style.display = 'none';
@@ -235,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         closeBtn.addEventListener('click', closeLightbox);
-        
+
         // Sluit ook als je naast de foto klikt
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
@@ -277,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         update() {
             let cols = parseInt(this.inCols.value) || 1;
             let rows = parseInt(this.inRows.value) || 1;
-            
+
             // Safety limits for rendering
             if (cols > 50) cols = 50;
             if (rows > 50) rows = 50;
@@ -328,19 +341,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const ecosystemTriggers = document.querySelectorAll('.action-trigger');
 
     ecosystemTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function() {
+        trigger.addEventListener('click', function () {
             const parent = this.closest('.ecosystem-item');
             const list = parent.querySelector('.link-list');
-            
+
             // 1. Fade out button
             this.style.opacity = '0';
             this.style.transform = 'scale(0.9)';
-            
+
             // 2. Wait for transition, then swap
             setTimeout(() => {
                 this.style.display = 'none';
                 list.style.display = 'flex';
-                
+
                 // 3. Trigger reflow & Fade in list
                 requestAnimationFrame(() => {
                     list.style.opacity = '1';
@@ -354,9 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const avHeroBg = document.getElementById('hero-code-bg');
     if (avHeroBg) {
         const snippets = [
-            'AudioContext.resume()', 'navigator.mediaDevices', 'DMX512.connect()', 
-            'HDMI_SIGNAL: TRUE', '4K_60Hz_HDR', 'Gain: +6dB', 
-            'TCP/IP: Connected', 'Latency: <1ms', 'Buffer: 1024', 
+            'AudioContext.resume()', 'navigator.mediaDevices', 'DMX512.connect()',
+            'HDMI_SIGNAL: TRUE', '4K_60Hz_HDR', 'Gain: +6dB',
+            'TCP/IP: Connected', 'Latency: <1ms', 'Buffer: 1024',
             'SampleRate: 48000', 'FFmpeg.encode()', 'WebGL.render()',
             'Signal_Flow: OK', 'Matrix.route(1, 4)', 'Phantom_Power: ON',
             'EDID_Handshake', 'H.264 Stream', 'Bitrate: 12Mbps'
@@ -370,16 +383,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const span = document.createElement('span');
             span.classList.add('code-snippet');
             span.innerText = snippets[Math.floor(Math.random() * snippets.length)];
-            
+
             // Random Positionering
             const left = Math.random() * 100;
             const top = Math.random() * 100;
             const depth = Math.random(); // Voor parallax snelheid
-            
+
             span.style.left = `${left}%`;
             span.style.top = `${top}%`;
             span.dataset.depth = depth; // Opslaan voor parallax
-            
+
             avHeroBg.appendChild(span);
             snippetElements.push(span);
         }
@@ -387,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Mouse Interaction (Parallax & Proximity)
         let mouseX = 0;
         let mouseY = 0;
-        
+
         // Alleen parallax op desktop/muis apparaten
         if (window.matchMedia("(hover: hover)").matches) {
             document.addEventListener('mousemove', (e) => {
@@ -410,14 +423,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const highlightRandomSnippet = () => {
             // Verwijder oude highlights
             snippetElements.forEach(el => el.classList.remove('highlight'));
-            
+
             // Kies random aantal (1 tot 3)
             const count = Math.floor(Math.random() * 3) + 1;
-            
-            for(let i=0; i<count; i++) {
+
+            for (let i = 0; i < count; i++) {
                 const randomEl = snippetElements[Math.floor(Math.random() * snippetElements.length)];
                 randomEl.classList.add('highlight');
-                
+
                 // Verwijder highlight na korte tijd
                 setTimeout(() => {
                     randomEl.classList.remove('highlight');
@@ -429,23 +442,23 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(highlightRandomSnippet, 2000);
     }
 
-    // --- Global Typewriter Effect for H1 & H2 ---
-    const typeWriterElements = document.querySelectorAll('h1, h2');
-    
+    // --- Global Typewriter Effect for H1 ---
+    const typeWriterElements = document.querySelectorAll('h1');
+
     // Check of we op een pagina zijn met een eigen identiteit (Bikes, AV, Sim)
     // Zo ja, dan slaan we de JS-char-fade over zodat de CSS-animaties (Slide/Glitch/Zoom) hun werk kunnen doen.
-    const hasCustomIdentity = document.body.classList.contains('page-bikes') || 
-                              document.body.classList.contains('page-av') || 
-                              document.body.classList.contains('page-sim') ||
-                              document.body.classList.contains('page-home');
+    const hasCustomIdentity = document.body.classList.contains('page-bikes') ||
+        document.body.classList.contains('page-av') ||
+        document.body.classList.contains('page-sim') ||
+        document.body.classList.contains('page-home');
 
-    
+
     const typeWriterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 const chars = element.querySelectorAll('.type-char');
-                
+
                 setTimeout(() => {
                     chars.forEach((char, index) => {
                         setTimeout(() => {
@@ -453,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, 75 * index); // Iets langzamer (75ms)
                     });
                 }, 250); // Startvertraging voor betere timing met fade-in
-                
+
                 typeWriterObserver.unobserve(element);
             }
         });
@@ -461,34 +474,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Voer alleen uit op Index en Web (of pagina's zonder custom identity)
     if (!hasCustomIdentity) {
-    typeWriterElements.forEach(el => {
-        // Zorg dat element zichtbaar is (voor het geval CSS het verbergt)
-        el.style.opacity = '1';
+        typeWriterElements.forEach(el => {
+            // Zorg dat element zichtbaar is (voor het geval CSS het verbergt)
+            el.style.opacity = '1';
 
-        const wrapTextNodes = (node) => {
-            if (node.nodeType === 3) { // Text node
-                const text = node.nodeValue;
-                if (!text.trim()) return; // Skip witruimte
-                
-                const fragment = document.createDocumentFragment();
-                [...text].forEach(char => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    span.className = 'type-char';
-                    span.style.opacity = '0';
-                    span.style.transition = 'opacity 0.1s';
-                    fragment.appendChild(span);
-                });
-                node.replaceWith(fragment);
-            } else {
-                [...node.childNodes].forEach(wrapTextNodes);
-            }
-        };
+            const wrapTextNodes = (node) => {
+                if (node.nodeType === 3) { // Text node
+                    const text = node.nodeValue;
+                    if (!text.trim()) return; // Skip witruimte
 
-        // Verwerk de tekstnodes zonder de HTML structuur (zoals .accent spans) te breken
-        [...el.childNodes].forEach(wrapTextNodes);
-        
-        typeWriterObserver.observe(el);
-    });
+                    const fragment = document.createDocumentFragment();
+                    [...text].forEach(char => {
+                        const span = document.createElement('span');
+                        span.textContent = char;
+                        span.className = 'type-char';
+                        span.style.opacity = '0';
+                        span.style.transition = 'opacity 0.1s';
+                        fragment.appendChild(span);
+                    });
+                    node.replaceWith(fragment);
+                } else {
+                    [...node.childNodes].forEach(wrapTextNodes);
+                }
+            };
+
+            // Verwerk de tekstnodes zonder de HTML structuur (zoals .accent spans) te breken
+            [...el.childNodes].forEach(wrapTextNodes);
+
+            typeWriterObserver.observe(el);
+        });
     }
 });

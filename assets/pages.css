@@ -6,7 +6,8 @@ body.page-bikes {
     --accent-hover: #b3e600;
     --hero-gradient: linear-gradient(135deg, rgba(204, 255, 0, 0.1), rgba(26, 26, 46, 0.9));
     --font-headers: 'Russo One', sans-serif;
-    --font-main: 'Roboto', sans-serif; /* Neutraler voor body tekst */
+    --font-main: 'Roboto', sans-serif;
+    /* Neutraler voor body tekst */
 }
 
 /* 2. AV World (Midnight Purple) */
@@ -23,6 +24,11 @@ body.page-web {
     --accent-color: #1a9bc1;
     --accent-hover: #137a99;
     --hero-gradient: linear-gradient(135deg, rgba(26, 155, 193, 0.1), rgba(26, 26, 46, 0.9));
+}
+
+/* Specific override for the hero button on Web page to match game secondary color (Pink) */
+body.page-web .cyber-hero-btn {
+    --accent-color: #ff00ff;
 }
 
 /* WEB IDENTITY: Terminal / Console Style */
@@ -44,23 +50,45 @@ body.page-sim {
 /* --- Typewriter Reset & Font Override Logic --- */
 /* We verwijderen de typewriter stijl van Bikes, AV en Sim, maar laten Web en Index intact */
 
-.page-bikes h1, .page-bikes h2, .page-bikes h3, .page-bikes .fade-in:not(.show) h1, .page-bikes .fade-in:not(.show) h2, .page-bikes .fade-in:not(.show) h3,
-.page-av h1, .page-av h2, .page-av h3, .page-av .fade-in:not(.show) h1, .page-av .fade-in:not(.show) h2, .page-av .fade-in:not(.show) h3,
-.page-sim h1, .page-sim h2, .page-sim h3, .page-sim .fade-in:not(.show) h1, .page-sim .fade-in:not(.show) h2, .page-sim .fade-in:not(.show) h3,
+.page-bikes h1,
+.page-bikes h2,
+.page-bikes h3,
+.page-bikes .fade-in:not(.show) h1,
+.page-bikes .fade-in:not(.show) h2,
+.page-bikes .fade-in:not(.show) h3,
+.page-av h1,
+.page-av h2,
+.page-av h3,
+.page-av .fade-in:not(.show) h1,
+.page-av .fade-in:not(.show) h2,
+.page-av .fade-in:not(.show) h3,
+.page-sim h1,
+.page-sim h2,
+.page-sim h3,
+.page-sim .fade-in:not(.show) h1,
+.page-sim .fade-in:not(.show) h2,
+.page-sim .fade-in:not(.show) h3,
 .page-home h1 {
     font-family: var(--font-headers);
-    border-right: none;      /* Geen cursor */
-    white-space: normal;     /* Normale text wrap */
-    max-width: 100%;         /* Forceer zichtbaarheid, override style.css */
+    border-right: none;
+    /* Geen cursor */
+    white-space: normal;
+    /* Normale text wrap */
+    max-width: 100%;
+    /* Forceer zichtbaarheid, override style.css */
     width: auto;
-    display: block;          
+    display: block;
     text-align: center;
-    animation: none;         /* Verwijder typewriter animatie */
-    opacity: 1;              /* Zorg dat ze zichtbaar zijn (fade-in regelt de parent) */
+    animation: none;
+    /* Verwijder typewriter animatie */
+    opacity: 1;
+    /* Zorg dat ze zichtbaar zijn (fade-in regelt de parent) */
 }
 
 /* Pas body fonts aan voor leesbaarheid */
-.page-bikes, .page-av, .page-sim {
+.page-bikes,
+.page-av,
+.page-sim {
     font-family: var(--font-main);
 }
 
@@ -74,14 +102,45 @@ body.page-sim {
 }
 
 @keyframes homeGlitch {
-    0% { opacity: 0; transform: scale(1.1); filter: blur(10px); }
-    20% { opacity: 1; transform: scale(1); filter: blur(0); }
-    40% { text-shadow: 2px 0 var(--accent-color), -2px 0 red; transform: translateX(-2px); }
-    50% { text-shadow: -2px 0 var(--accent-color), 2px 0 red; transform: translateX(2px); }
-    60% { text-shadow: none; transform: translateX(0); }
-    70% { opacity: 0.8; }
-    80% { opacity: 1; }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+        filter: blur(10px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+
+    40% {
+        text-shadow: 2px 0 var(--accent-color), -2px 0 red;
+        transform: translateX(-2px);
+    }
+
+    50% {
+        text-shadow: -2px 0 var(--accent-color), 2px 0 red;
+        transform: translateX(2px);
+    }
+
+    60% {
+        text-shadow: none;
+        transform: translateX(0);
+    }
+
+    70% {
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* --- 1. BIKES IDENTITY: Speed & Aggression --- */
@@ -118,8 +177,15 @@ body.page-sim {
 }
 
 @keyframes bikeSlideIn {
-    0% { opacity: 0; transform: translateX(-100px) skewX(-20deg); }
-    100% { opacity: 1; transform: translateX(0) skewX(-10deg); }
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) skewX(-20deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) skewX(-10deg);
+    }
 }
 
 /* --- 2. AV IDENTITY: Tech & Digital --- */
@@ -141,16 +207,45 @@ body.page-sim {
 }
 
 @keyframes avFlicker {
-    0% { opacity: 0; }
-    10% { opacity: 0; }
-    11% { opacity: 1; }
-    12% { opacity: 0; }
-    14% { opacity: 0; }
-    15% { opacity: 1; }
-    30% { opacity: 1; }
-    31% { opacity: 0; }
-    32% { opacity: 1; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    11% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0;
+    }
+
+    14% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    31% {
+        opacity: 0;
+    }
+
+    32% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 /* --- 3. SIM IDENTITY: Gaming & Precision --- */
@@ -160,7 +255,7 @@ body.page-sim {
     text-transform: uppercase;
     letter-spacing: -1px;
     animation: simZoom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-    text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .page-sim h2 {
@@ -173,7 +268,8 @@ body.page-sim {
 }
 
 /* HUD Brackets Animation: Haakjes komen naar binnen */
-.page-sim h2::before, .page-sim h2::after {
+.page-sim h2::before,
+.page-sim h2::after {
     content: '[';
     font-family: var(--font-mono);
     color: var(--accent-color);
@@ -196,8 +292,15 @@ body.page-sim {
 }
 
 @keyframes simZoom {
-    0% { opacity: 0; transform: scale(0.5) translateY(50px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* --- Shared Hero Styles for Subpages --- */
@@ -243,7 +346,7 @@ body.page-sim {
     font-size: clamp(2.5rem, 5vw, 4rem);
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 /* --- Cyber Hero Button (Start Button) --- */
@@ -266,7 +369,7 @@ body.page-sim {
     /* Cyberpunk Shape: Afgeschuinde hoeken */
     clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
     transition: all 0.3s ease;
-    
+
     /* Constant Cyberpunk Animation (Idle State) */
     box-shadow: 0 0 5px var(--accent-color), inset 0 0 5px var(--accent-color);
     animation: cyberPulse 3s infinite ease-in-out;
@@ -290,13 +393,31 @@ body.page-sim {
 }
 
 @keyframes heroPop {
-    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 @keyframes cyberPulse {
-    0%, 100% { box-shadow: 0 0 5px var(--accent-color), inset 0 0 2px var(--accent-color); text-shadow: 0 0 2px var(--accent-color); opacity: 0.8; }
-    50% { box-shadow: 0 0 20px var(--accent-color), inset 0 0 10px var(--accent-color); text-shadow: 0 0 10px var(--accent-color); opacity: 1; }
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--accent-color), inset 0 0 2px var(--accent-color);
+        text-shadow: 0 0 2px var(--accent-color);
+        opacity: 0.8;
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--accent-color), inset 0 0 10px var(--accent-color);
+        text-shadow: 0 0 10px var(--accent-color);
+        opacity: 1;
+    }
 }
 
 /* --- AV Hero Interactive Code Background --- */
@@ -304,8 +425,10 @@ body.page-sim {
     position: absolute;
     inset: 0;
     overflow: hidden;
-    z-index: 2; /* Tussen background en content */
-    pointer-events: none; /* Zorgt dat muis events doorgaan naar content */
+    z-index: 2;
+    /* Tussen background en content */
+    pointer-events: none;
+    /* Zorgt dat muis events doorgaan naar content */
 }
 
 .code-snippet {
@@ -328,7 +451,8 @@ body.page-sim {
 
 @media (max-width: 768px) {
     .code-snippet {
-        font-size: 0.7rem; /* Iets kleiner op mobiel */
+        font-size: 0.7rem;
+        /* Iets kleiner op mobiel */
         opacity: 0.1;
     }
 }
@@ -344,8 +468,8 @@ body.page-sim {
 }
 
 .spec-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 1.5rem;
     text-align: center;
     border-radius: var(--border-radius);
@@ -354,7 +478,7 @@ body.page-sim {
 
 .spec-item:hover {
     border-color: var(--accent-color);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .spec-value {
@@ -393,8 +517,9 @@ body.page-sim {
 
 .gear-row:hover {
     border-left-color: var(--accent-color);
-    background: rgba(255,255,255,0.05);
-    padding-left: 1.5rem; /* Slide effect */
+    background: rgba(255, 255, 255, 0.05);
+    padding-left: 1.5rem;
+    /* Slide effect */
 }
 
 /* WEB: Tech Stack Grid */
@@ -441,7 +566,7 @@ body.page-sim {
 }
 
 .stat-bar {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     height: 40px;
     border-radius: 4px;
     position: relative;
@@ -451,7 +576,8 @@ body.page-sim {
 .stat-fill {
     height: 100%;
     background: var(--accent-color);
-    width: 0%; /* Start width for animation */
+    width: 0%;
+    /* Start width for animation */
     display: flex;
     align-items: center;
     padding-left: 1rem;
@@ -477,7 +603,8 @@ body.page-sim {
 
 @media (min-width: 768px) {
     .rig-showcase {
-        grid-template-columns: 1.2fr 0.8fr; /* Foto krijgt iets meer ruimte */
+        grid-template-columns: 1.2fr 0.8fr;
+        /* Foto krijgt iets meer ruimte */
     }
 }
 
@@ -487,8 +614,8 @@ body.page-sim {
     background-size: cover;
     background-position: center;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .rig-specs {
@@ -510,7 +637,7 @@ body.page-sim {
 .tech-card:hover {
     border-left-color: var(--accent-color);
     transform: translateX(10px);
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .tech-label {
@@ -526,7 +653,8 @@ body.page-sim {
     font-size: 1.1rem;
     font-weight: bold;
     color: var(--text-color);
-    word-break: break-word; /* Zorgt dat lange woorden netjes wrappen */
+    word-break: break-word;
+    /* Zorgt dat lange woorden netjes wrappen */
 }
 
 /* Project Cards (Generic for Web/AV) */
@@ -570,8 +698,8 @@ body.page-sim {
     background: var(--bg-alt);
     padding: 2rem;
     border-radius: var(--border-radius);
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -605,9 +733,10 @@ label {
     font-weight: bold;
 }
 
-select, input[type="number"] {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.1);
+select,
+input[type="number"] {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-color);
     padding: 12px;
     border-radius: 4px;
@@ -615,14 +744,15 @@ select, input[type="number"] {
     font-size: 1rem;
 }
 
-select:focus, input:focus {
+select:focus,
+input:focus {
     outline: none;
     border-color: var(--accent-color);
 }
 
 .config-dashboard {
     margin-top: auto;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     padding: 1.5rem;
     border-radius: 8px;
     display: flex;
@@ -631,9 +761,23 @@ select:focus, input:focus {
     border-left: 3px solid var(--accent-color);
 }
 
-.stat-item { display: flex; flex-direction: column; }
-.stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
-.stat-value { font-size: 1.2rem; font-weight: bold; color: #fff; font-family: var(--font-mono); }
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: var(--font-mono);
+}
 
 .config-visual {
     background: #000;
@@ -646,14 +790,20 @@ select:focus, input:focus {
     min-height: 400px;
 }
 
-.led-grid { display: grid; gap: 1px; width: 100%; max-width: 100%; transition: all 0.3s ease; }
+.led-grid {
+    display: grid;
+    gap: 1px;
+    width: 100%;
+    max-width: 100%;
+    transition: all 0.3s ease;
+}
 
-.led-cabinet { 
-    background: #151515; 
-    border: 1px solid #333; 
-    aspect-ratio: 16 / 9; 
-    position: relative; 
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
+.led-cabinet {
+    background: #151515;
+    border: 1px solid #333;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 /* Outdoor cabinets zijn vaak vierkant (500x500mm) */
@@ -677,7 +827,7 @@ select:focus, input:focus {
 
 .resource-card {
     background: var(--bg-alt);
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 2rem;
     border-radius: var(--border-radius);
     display: flex;
@@ -709,7 +859,7 @@ select:focus, input:focus {
 .resource-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-color);
-    box-shadow: 0 0 20px rgba(157, 0, 255, 0.2), inset 0 0 10px rgba(255,255,255,0.05);
+    box-shadow: 0 0 20px rgba(157, 0, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .resource-card:hover i {
@@ -720,7 +870,8 @@ select:focus, input:focus {
 /* --- Interactive Ecosystem Items --- */
 .ecosystem-item {
     position: relative;
-    min-height: 150px; /* Voorkomt verspringen van layout bij wissel */
+    min-height: 150px;
+    /* Voorkomt verspringen van layout bij wissel */
     display: flex;
     flex-direction: column;
 }
@@ -733,7 +884,8 @@ select:focus, input:focus {
 }
 
 .link-list {
-    display: none; /* Wordt door JS op flex gezet */
+    display: none;
+    /* Wordt door JS op flex gezet */
     flex-direction: column;
     gap: 0.8rem;
     opacity: 0;
@@ -745,8 +897,8 @@ select:focus, input:focus {
 .link-list li a {
     display: block;
     padding: 1rem;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     text-align: center;
     font-weight: bold;

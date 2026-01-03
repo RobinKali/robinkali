@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,9 @@
     <link rel="stylesheet" href="../assets/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="page-web">
+    <link rel="stylesheet" href="../assets/snake-game.css">
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -39,7 +42,7 @@
     </nav>
 
     <!-- Header / Hero -->
-    <header class="sub-hero" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/1a9bc1?text=Web+Hero+Image');">
+    <header class="sub-hero" style="background-image: url('../assets/web-hero.png');">
         <div class="container sub-hero-content">
             <h1 class="typewriter-text">Web <span class="accent">Development</span></h1>
             <p class="hero-sub">Projecten, code & design</p>
@@ -63,44 +66,88 @@
         </div>
     </section>
 
+
+
     <!-- Section 2: Philosophy -->
-    <section class="section fade-in">
+    <section class="section alt-bg fade-in">
         <div class="container split-layout">
             <div>
                 <h2>Code <span class="accent">Philosophy</span></h2>
-                <p>Clean, semantic, and performant. I believe in building web experiences that are accessible and delightful to use.</p>
+                <p>Clean, semantic, and performant. I believe in building web experiences that are accessible and
+                    delightful to use.</p>
             </div>
-            <div style="font-size: 10rem; color: var(--bg-alt); text-align: center;">
+            <div style="font-size: 10rem; color: var(--text-muted); opacity: 0.1; text-align: center;">
                 <i class="fa-solid fa-code"></i>
             </div>
         </div>
     </section>
 
     <!-- Section 3: Projects -->
-    <section class="section alt-bg fade-in">
+    <section class="section fade-in">
         <div class="container">
-            <h2>More coming <span class="accent">Soon</span></h2>
+            <h2>Featured <span class="accent">Projects</span></h2>
             <div class="project-grid">
-                <!-- <article class="project-card">
-                    <div class="project-thumb"></div>
+                <article class="project-card">
+                    <div class="project-thumb"
+                        style="background: url('https://placehold.co/600x400/1a1a2e/1a9bc1?text=Weather+App') center/cover;">
+                    </div>
                     <div class="project-info">
-                        <h3>Portfolio V1</h3>
-                        <p>The site you are looking at right now.</p>
+                        <h3>Weather Dashboard</h3>
+                        <p>Real-time weather tracking with geolocation and 5-day forecast.</p>
                         <div class="project-tags">
-                            <span>HTML</span><span>CSS</span><span>JS</span>
+                            <span>React</span><span>API</span><span>CSS</span>
                         </div>
                     </div>
                 </article>
                 <article class="project-card">
-                    <div class="project-thumb" style="background: #222;"></div>
+                    <div class="project-thumb"
+                        style="background: url('https://placehold.co/600x400/1a1a2e/9d00ff?text=3D+Portfolio') center/cover;">
+                    </div>
                     <div class="project-info">
-                        <h3>Dashboard UI</h3>
-                        <p>Concept for a simracing telemetry dashboard.</p>
+                        <h3>Three.js Portfolio</h3>
+                        <p>Interactive 3D experience showcasing WebGL capabilities.</p>
                         <div class="project-tags">
-                            <span>React</span><span>ChartJS</span>
+                            <span>Three.js</span><span>WebGL</span><span>GSAP</span>
                         </div>
                     </div>
-                </article> -->
+                </article>
+                <article class="project-card">
+                    <div class="project-thumb"
+                        style="background: url('https://placehold.co/600x400/1a1a2e/ccff00?text=Shop+UI') center/cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-commerce Library</h3>
+                        <p>A set of reusable, accessible e-commerce components.</p>
+                        <div class="project-tags">
+                            <span>Vue.js</span><span>Tailwind</span><span>A11y</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Cyberpunk Snake Game -->
+    <section id="game-section" class="section alt-bg fade-in">
+        <div class="container game-container">
+            <div class="game-header">
+                <h2>Cyber<span class="accent">Snake</span></h2>
+                <p>Collect data packets. Avoid bugs. Don't crash.</p>
+                <div class="score-board">
+                    <div>Score: <span id="current-score">0</span></div>
+                    <div>High Score: <span id="high-score">0</span></div>
+                </div>
+            </div>
+
+            <div id="snake-game-wrapper">
+                <canvas id="snake-game"></canvas>
+                <div class="scanlines"></div>
+
+                <div id="game-overlay" class="game-overlay">
+                    <h3 id="overlay-title">SYSTEM READY</h3>
+                    <p id="overlay-msg">Use Arrows/WASD or Swipe to Move</p>
+                    <button id="start-btn" class="start-btn">INITIALIZE</button>
+                </div>
             </div>
         </div>
     </section>
@@ -110,9 +157,12 @@
         <div class="container footer-content">
             <p>Made with lot's of <i class="fa-solid fa-mug-hot"></i> by <strong>Robin Kali</strong>.</p>
             <div class="socials">
-                <a href="https://www.linkedin.com/in/robin-kalaykhan-4b2443153/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/RobinKali" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.instagram.com/robinxkali/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/robin-kalaykhan-4b2443153/" target="_blank" rel="noopener"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/RobinKali" target="_blank" rel="noopener"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/robinxkali/" target="_blank" rel="noopener"><i
+                        class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
@@ -129,5 +179,7 @@
     </div>
 
     <script src="../assets/script.js"></script>
+    <script src="../assets/snake-game.js"></script>
 </body>
+
 </html>
