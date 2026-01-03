@@ -263,7 +263,7 @@ h1 {
     background-position: center;
     z-index: 0;
     /* Behind overlay */
-    animation: breathe 10s infinite alternate ease-in-out;
+    animation: breathe 15s infinite alternate ease-in-out;
     transform-origin: center center;
 }
 
