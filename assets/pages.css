@@ -984,6 +984,7 @@ input:focus {
     border-radius: 50%;
     transform-style: preserve-3d;
     box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.2);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .ring-1 {

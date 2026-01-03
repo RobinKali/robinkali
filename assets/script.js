@@ -504,4 +504,106 @@ document.addEventListener('DOMContentLoaded', () => {
             typeWriterObserver.observe(el);
         });
     }
+
+    // --- Hybrid Particle Storm (JS Physics + CSS 3D Actions) ---
+    const reactor = document.querySelector('.reactor-container');
+
+    if (reactor) {
+        // 1. Setup Canvas Overlay
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '9999';
+        document.body.appendChild(canvas);
+
+        let width, height;
+        const resize = () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', resize);
+        resize();
+
+        // 2. Particle System
+        const particles = [];
+        let isHovering = false;
+        let hue = 0;
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                // Explosion velocity (Random direction, high speed)
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 10 + 5; // Fast burst
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+
+                this.life = 1.0;
+                this.decay = Math.random() * 0.02 + 0.01;
+                this.size = Math.random() * 3 + 1;
+                this.color = Math.random() > 0.5 ? '#00a2ffff' : '#da1212ff'; // Red or White
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx *= 0.96; // Friction
+                this.vy *= 0.96;
+                this.life -= this.decay;
+            }
+
+            draw(ctx) {
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1.0;
+            }
+        }
+
+        // 3. Animation Loop
+        const loop = () => {
+            ctx.clearRect(0, 0, width, height);
+
+            // Spawn particles if hovering
+            if (isHovering) {
+                const rect = reactor.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                // Spawn multiple particles per frame for "Storm" effect
+                for (let i = 0; i < 5; i++) {
+                    particles.push(new Particle(centerX, centerY));
+                }
+            }
+
+            // Update & Draw
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw(ctx);
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(loop);
+        };
+        loop();
+
+        // 4. Interaction Triggers
+        reactor.addEventListener('mouseenter', () => isHovering = true);
+        reactor.addEventListener('mouseleave', () => isHovering = false);
+
+        // Mobile Touch Support
+        reactor.addEventListener('touchstart', () => isHovering = true, { passive: true });
+        reactor.addEventListener('touchend', () => isHovering = false);
+    }
 });
