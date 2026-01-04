@@ -4,7 +4,7 @@
     --cyber-grid: rgba(26, 155, 193, 0.1);
     --cyber-primary: #1a9bc1;
     /* Brand Blue */
-    --cyber-secondary: #ff00ff;
+    --cyber-secondary: #0f1de4;
     /* Neon Magenta */
     --cyber-text: #e0e0e0;
 }
@@ -106,8 +106,8 @@ canvas#snake-game {
 
 .start-btn {
     background: transparent;
-    color: var(--cyber-secondary);
-    border: 2px solid var(--cyber-secondary);
+    color: var(--cyber-primary);
+    border: 2px solid var(--cyber-primary);
     padding: 0.8rem 2rem;
     font-family: 'Courier New', monospace;
     font-size: 1.2rem;
@@ -115,13 +115,13 @@ canvas#snake-game {
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+    box-shadow: 0 0 10px rgba(33, 4, 201, 0.3);
 }
 
 .start-btn:hover {
-    background: var(--cyber-secondary);
+    background: var(--cyber-primary);
     color: #000;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+    box-shadow: 0 0 20px var(--cyber-primary);
 }
 
 .score-board {

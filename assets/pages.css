@@ -26,11 +26,6 @@ body.page-web {
     --hero-gradient: linear-gradient(135deg, rgba(26, 155, 193, 0.1), rgba(26, 26, 46, 0.9));
 }
 
-/* Specific override for the hero button on Web page to match game secondary color (Pink) */
-body.page-web .cyber-hero-btn {
-    --accent-color: #ff00ff;
-}
-
 /* WEB IDENTITY: Terminal / Console Style */
 .page-web h1::before {
     content: '> ';
@@ -248,7 +243,7 @@ body.page-sim {
     }
 }
 
-/* --- 3. SIM IDENTITY: Gaming & Precision --- */
+/* --- 3. SIM IDENTITY--- */
 .page-sim h1 {
     font-weight: 900;
     font-style: italic;
