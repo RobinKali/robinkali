@@ -45,7 +45,6 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     /* Voorkomt dat content onder de sticky header verdwijnt */
-    overflow-x: hidden;
 }
 
 body {
@@ -150,6 +149,11 @@ h1 {
     z-index: 1000;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .nav-container {
@@ -407,6 +411,10 @@ body.light-mode .card {
 
 .hobby-card {
     text-align: center;
+}
+
+.hobby-card .card-image {
+    aspect-ratio: 9 / 16;
 }
 
 .card-image {
@@ -759,4 +767,70 @@ body.light-mode .back-to-top {
 
 .lightbox-close:hover {
     color: var(--accent-color);
+}
+
+/* --- Stories Marquee Section --- */
+.marquee-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    /* Animation removed for JS control */
+    will-change: transform;
+}
+
+.stories-marquee {
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+    background: var(--bg-alt);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    cursor: grab;
+    touch-action: pan-y;
+    /* Allow vertical scroll, handle horizontal in JS */
+}
+
+.stories-marquee:active {
+    cursor: grabbing;
+}
+
+.story-item {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    /* user-select: none to prevent highlighting during drag */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.story-item img,
+.story-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.story-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    /* Lichte overlay */
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.story-item:hover img,
+.story-item:hover video {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.story-item:hover::after {
+    background: transparent;
 }

@@ -10,6 +10,12 @@ body.page-bikes {
     /* Neutraler voor body tekst */
 }
 
+.page-bikes .nav-links a {
+    font-family: var(--font-headers);
+    text-transform: uppercase;
+    font-style: italic;
+}
+
 /* 2. AV World (Midnight Purple) */
 body.page-av {
     --accent-color: #9d00ff;
@@ -40,6 +46,11 @@ body.page-sim {
     --hero-gradient: linear-gradient(135deg, rgba(255, 0, 60, 0.1), rgba(26, 26, 46, 0.9));
     --font-headers: 'Exo 2', sans-serif;
     --font-main: 'Exo 2', sans-serif;
+}
+
+.page-sim .nav-links a {
+    font-family: var(--font-headers);
+    font-weight: 700;
 }
 
 /* --- Typewriter Reset & Font Override Logic --- */
@@ -425,42 +436,7 @@ body.page-sim {
     }
 }
 
-/* --- AV Hero Interactive Code Background --- */
-.hero-code-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 2;
-    /* Tussen background en content */
-    pointer-events: none;
-    /* Zorgt dat muis events doorgaan naar content */
-}
 
-.code-snippet {
-    position: absolute;
-    font-family: 'Courier New', monospace;
-    color: var(--accent-color);
-    opacity: 0.15;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    transition: opacity 0.3s ease, color 0.3s ease;
-    will-change: transform, opacity;
-    user-select: none;
-}
-
-.code-snippet.highlight {
-    opacity: 0.8;
-    text-shadow: 0 0 10px var(--accent-color);
-    z-index: 3;
-}
-
-@media (max-width: 768px) {
-    .code-snippet {
-        font-size: 0.7rem;
-        /* Iets kleiner op mobiel */
-        opacity: 0.1;
-    }
-}
 
 /* --- Specific Section Components --- */
 

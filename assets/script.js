@@ -257,189 +257,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LED Wall Configurator Logic (Class Based) ---
-    class LedConfigurator {
-        constructor(prefix, cabinetSpecs, pitches, isOutdoor = false) {
-            this.prefix = prefix;
-            this.cabinetW = cabinetSpecs.w;
-            this.cabinetH = cabinetSpecs.h;
-            this.pitches = pitches;
-            this.isOutdoor = isOutdoor;
+    // --- Smart Navbar (Scroll Behavior) ---
+    let lastScrollY = window.scrollY;
+    const navbar = document.querySelector('.navbar');
+    // Ensure we check the mobile menu state (defined earlier as navLinks)
 
-            // Elements
-            this.grid = document.getElementById(`${prefix}-grid`);
-            this.inCols = document.getElementById(`${prefix}-cols`);
-            this.inRows = document.getElementById(`${prefix}-rows`);
-            this.inPitch = document.getElementById(`${prefix}-pitch`);
-            this.outRes = document.getElementById(`${prefix}-res`);
-            this.outDim = document.getElementById(`${prefix}-dim`);
-            this.outCab = document.getElementById(`${prefix}-cab`);
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            const currentScrollY = Math.max(0, window.scrollY);
+            const isMobileMenuOpen = navLinks && navLinks.classList.contains('active');
 
-            if (this.grid) {
-                this.init();
+            // 1. Always show if at the top (buffer zone)
+            // 2. Always show if mobile menu is open (UX fix)
+            // 3. Show if scrolling UP
+            if (currentScrollY < 60 || isMobileMenuOpen || currentScrollY < lastScrollY) {
+                navbar.classList.remove('nav-hidden');
             }
-        }
-
-        init() {
-            this.inCols.addEventListener('input', () => this.update());
-            this.inRows.addEventListener('input', () => this.update());
-            this.inPitch.addEventListener('change', () => this.update());
-            this.update(); // Initial draw
-        }
-
-        update() {
-            let cols = parseInt(this.inCols.value) || 1;
-            let rows = parseInt(this.inRows.value) || 1;
-
-            // Safety limits for rendering
-            if (cols > 50) cols = 50;
-            if (rows > 50) rows = 50;
-
-            const pitch = this.inPitch.value;
-            const resPerCab = this.pitches[pitch];
-
-            // Calculations
-            const totalResW = cols * resPerCab.w;
-            const totalResH = rows * resPerCab.h;
-            const totalDimW = (cols * this.cabinetW) / 1000; // mm to meters
-            const totalDimH = (rows * this.cabinetH) / 1000; // mm to meters
-            const totalCabinets = cols * rows;
-
-            // Update Dashboard
-            this.outRes.innerText = `${totalResW} x ${totalResH} px`;
-            this.outDim.innerText = `${totalDimW.toFixed(2)}m x ${totalDimH.toFixed(2)}m`;
-            this.outCab.innerText = totalCabinets;
-
-            // Draw Grid
-            this.grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-            this.grid.innerHTML = '';
-
-            const fragment = document.createDocumentFragment();
-            for (let i = 0; i < totalCabinets; i++) {
-                const div = document.createElement('div');
-                div.className = 'led-cabinet';
-                if (this.isOutdoor) div.classList.add('outdoor');
-                fragment.appendChild(div);
+            // 4. Hide ONLY if scrolling DOWN and past the buffer zone
+            else if (currentScrollY > lastScrollY && currentScrollY > 60) {
+                navbar.classList.add('nav-hidden');
             }
-            this.grid.appendChild(fragment);
-        }
-    }
 
-    // Initialize Indoor (Generic 27" - 600x337.5mm)
-    new LedConfigurator('indoor', { w: 600, h: 337.5 }, {
-        "0.78": { w: 768, h: 432 }, "0.93": { w: 640, h: 360 }, "1.25": { w: 480, h: 270 },
-        "1.56": { w: 384, h: 216 }, "1.87": { w: 320, h: 180 }
-    });
-
-    // Initialize Outdoor (Standard 500x500mm)
-    new LedConfigurator('outdoor', { w: 500, h: 500 }, {
-        "3.9": { w: 128, h: 128 }, "4.8": { w: 104, h: 104 }, "6.67": { w: 75, h: 75 },
-        "10": { w: 50, h: 50 }, "16": { w: 31, h: 31 }
-    }, true);
-
-    // --- Interactive Ecosystem Cards ---
-    const ecosystemTriggers = document.querySelectorAll('.action-trigger');
-
-    ecosystemTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function () {
-            const parent = this.closest('.ecosystem-item');
-            const list = parent.querySelector('.link-list');
-
-            // 1. Fade out button
-            this.style.opacity = '0';
-            this.style.transform = 'scale(0.9)';
-
-            // 2. Wait for transition, then swap
-            setTimeout(() => {
-                this.style.display = 'none';
-                list.style.display = 'flex';
-
-                // 3. Trigger reflow & Fade in list
-                requestAnimationFrame(() => {
-                    list.style.opacity = '1';
-                    list.style.transform = 'translateY(0)';
-                });
-            }, 300); // Match CSS transition time
+            lastScrollY = currentScrollY;
         });
-    });
-
-    // --- AV Page Hero Animation (Interactive Code Background) ---
-    const avHeroBg = document.getElementById('hero-code-bg');
-    if (avHeroBg) {
-        const snippets = [
-            'AudioContext.resume()', 'navigator.mediaDevices', 'DMX512.connect()',
-            'HDMI_SIGNAL: TRUE', '4K_60Hz_HDR', 'Gain: +6dB',
-            'TCP/IP: Connected', 'Latency: <1ms', 'Buffer: 1024',
-            'SampleRate: 48000', 'FFmpeg.encode()', 'WebGL.render()',
-            'Signal_Flow: OK', 'Matrix.route(1, 4)', 'Phantom_Power: ON',
-            'EDID_Handshake', 'H.264 Stream', 'Bitrate: 12Mbps'
-        ];
-
-        const snippetElements = [];
-        const snippetCount = window.innerWidth < 768 ? 10 : 20; // Minder items op mobiel
-
-        // 1. Generate Snippets
-        for (let i = 0; i < snippetCount; i++) {
-            const span = document.createElement('span');
-            span.classList.add('code-snippet');
-            span.innerText = snippets[Math.floor(Math.random() * snippets.length)];
-
-            // Random Positionering
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const depth = Math.random(); // Voor parallax snelheid
-
-            span.style.left = `${left}%`;
-            span.style.top = `${top}%`;
-            span.dataset.depth = depth; // Opslaan voor parallax
-
-            avHeroBg.appendChild(span);
-            snippetElements.push(span);
-        }
-
-        // 2. Mouse Interaction (Parallax & Proximity)
-        let mouseX = 0;
-        let mouseY = 0;
-
-        // Alleen parallax op desktop/muis apparaten
-        if (window.matchMedia("(hover: hover)").matches) {
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth) - 0.5;
-                mouseY = (e.clientY / window.innerHeight) - 0.5;
-
-                requestAnimationFrame(() => {
-                    snippetElements.forEach(el => {
-                        const depth = parseFloat(el.dataset.depth);
-                        const moveX = mouseX * depth * 300; // Meer beweging
-                        const moveY = mouseY * depth * 300;
-                        el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                    });
-                });
-            });
-        }
-
-        // 3. Random Highlight Animation (Mobile & Desktop Idle)
-        // Laat af en toe een snippet oplichten alsof er data verwerkt wordt
-        const highlightRandomSnippet = () => {
-            // Verwijder oude highlights
-            snippetElements.forEach(el => el.classList.remove('highlight'));
-
-            // Kies random aantal (1 tot 3)
-            const count = Math.floor(Math.random() * 3) + 1;
-
-            for (let i = 0; i < count; i++) {
-                const randomEl = snippetElements[Math.floor(Math.random() * snippetElements.length)];
-                randomEl.classList.add('highlight');
-
-                // Verwijder highlight na korte tijd
-                setTimeout(() => {
-                    randomEl.classList.remove('highlight');
-                }, Math.random() * 1000 + 500);
-            }
-        };
-
-        // Start de loop
-        setInterval(highlightRandomSnippet, 2000);
     }
 
     // --- Global Typewriter Effect for H1 ---
@@ -503,6 +343,115 @@ document.addEventListener('DOMContentLoaded', () => {
 
             typeWriterObserver.observe(el);
         });
+    }
+
+    // --- Draggable Infinite Carousel ---
+    const marqueeTrack = document.querySelector('.marquee-track');
+    const marqueeContainer = document.querySelector('.stories-marquee');
+
+    if (marqueeTrack && marqueeContainer) {
+        let x = 0;
+        let speed = 0.5; // Base auto-scroll speed
+        let isDragging = false;
+        let startX = 0;
+        let dragStartX = 0;
+        let setWidth = 0;
+        let isClickBlocked = false;
+
+        // Calculate width of one set of items (originals)
+        // We assume the track has 2 sets (originals + duplicates)
+        const calculateWidth = () => {
+            if (marqueeTrack.children.length > 0) {
+                // Determine width based on half the total scroll width
+                // This assumes duplicates are exactly same as originals
+                return marqueeTrack.scrollWidth / 2;
+            }
+            return 0;
+        };
+
+        // Initialize and update on resize
+        const initDimensions = () => {
+            setWidth = calculateWidth();
+        };
+
+        // Wait for images to load for correct width
+        window.addEventListener('load', initDimensions);
+        window.addEventListener('resize', initDimensions);
+        initDimensions();
+
+        const animate = () => {
+            if (!isDragging) {
+                x -= speed;
+            }
+
+            // Infinite loop logic: wrap around when strictly needed
+            // Ensure setWidth is valid
+            if (setWidth > 0) {
+                if (x <= -setWidth) {
+                    x += setWidth;
+                    // Adjust dragStart if dragging to keep logic consistent?
+                    // Usually not needed during auto-scroll, but during drag verify:
+                    if (isDragging) dragStartX += setWidth;
+                } else if (x > 0) {
+                    x -= setWidth;
+                    if (isDragging) dragStartX -= setWidth;
+                }
+            }
+
+            marqueeTrack.style.transform = `translateX(${x}px)`;
+            requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+
+        // --- Drag / Swipe Logic ---
+        const startDrag = (e) => {
+            isDragging = true;
+            isClickBlocked = false; // Reset
+            startX = e.pageX || e.touches[0].pageX;
+            dragStartX = x;
+            marqueeContainer.classList.add('grabbing');
+            marqueeTrack.style.transition = 'none'; // Instant response
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            // Only prevent default if shifting horizontally significantly (allow vertical scroll?)
+            // But touch-action: pan-y handles vertical.
+
+            const currentX = e.pageX || e.touches[0].pageX;
+            const diff = currentX - startX;
+            x = dragStartX + diff;
+
+            // Block click if moved more than threshold
+            if (Math.abs(diff) > 5) {
+                isClickBlocked = true;
+            }
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+            marqueeContainer.classList.remove('grabbing');
+        };
+
+        // Mouse Events
+        marqueeContainer.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        // Touch Events
+        marqueeContainer.addEventListener('touchstart', startDrag, { passive: true });
+        window.addEventListener('touchmove', moveDrag, { passive: true });
+        window.addEventListener('touchend', endDrag);
+
+        // Prevent Lightbox Click if Dragged
+        // Use capture phase to intercept click before it gets to the image
+        marqueeContainer.addEventListener('click', (e) => {
+            if (isClickBlocked) {
+                e.preventDefault();
+                e.stopPropagation();
+                isClickBlocked = false; // Reset
+            }
+        }, true);
     }
 
     // --- Hybrid Particle Storm (JS Physics + CSS 3D Actions) ---
