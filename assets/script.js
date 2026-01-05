@@ -555,4 +555,135 @@ document.addEventListener('DOMContentLoaded', () => {
         reactor.addEventListener('touchstart', () => isHovering = true, { passive: true });
         reactor.addEventListener('touchend', () => isHovering = false);
     }
+
+    // --- LED Configurator Logic (Restored) ---
+    const indoorPitch = document.getElementById('indoor-pitch');
+    const outdoorPitch = document.getElementById('outdoor-pitch');
+
+    if (indoorPitch) {
+        initIndoorConfig();
+    }
+    if (outdoorPitch) {
+        initOutdoorConfig();
+    }
+
+    function initIndoorConfig() {
+        const iPitch = document.getElementById('indoor-pitch');
+        const iCols = document.getElementById('indoor-cols');
+        const iRows = document.getElementById('indoor-rows');
+        const iRes = document.getElementById('indoor-res');
+        const iDim = document.getElementById('indoor-dim');
+        const iCab = document.getElementById('indoor-cab');
+        const iGrid = document.getElementById('indoor-grid');
+
+        // Cabinet Specs (16:9, ~600x337.5mm)
+        // Map pitch value to resolution per cabinet
+        const specs = {
+            '0.78': { w: 768, h: 432 },
+            '0.93': { w: 640, h: 360 },
+            '1.25': { w: 480, h: 270 },
+            '1.56': { w: 384, h: 216 },
+            '1.87': { w: 320, h: 180 }
+        };
+        const cabWidthMm = 600;
+        const cabHeightMm = 337.5;
+
+        const updateIndoor = () => {
+            const pitch = iPitch.value;
+            const cols = parseInt(iCols.value) || 1;
+            const rows = parseInt(iRows.value) || 1;
+            const resPerCab = specs[pitch] || { w: 0, h: 0 };
+
+            // Calculations
+            const totalResW = cols * resPerCab.w;
+            const totalResH = rows * resPerCab.h;
+            const totalWidthM = (cols * cabWidthMm) / 1000;
+            const totalHeightM = (rows * cabHeightMm) / 1000;
+            const totalCabs = cols * rows;
+
+            // Updates
+            iRes.textContent = `${totalResW} x ${totalResH} px`;
+            iDim.textContent = `${totalWidthM.toFixed(2)}m x ${totalHeightM.toFixed(2)}m`;
+            iCab.textContent = totalCabs;
+
+            // Grid Visualization
+            renderGrid(iGrid, cols, rows, false);
+        };
+
+        iPitch.addEventListener('change', updateIndoor);
+        iCols.addEventListener('input', updateIndoor);
+        iRows.addEventListener('input', updateIndoor);
+
+        // Initial Run
+        updateIndoor();
+    }
+
+    function initOutdoorConfig() {
+        const oPitch = document.getElementById('outdoor-pitch');
+        const oCols = document.getElementById('outdoor-cols');
+        const oRows = document.getElementById('outdoor-rows');
+        const oRes = document.getElementById('outdoor-res');
+        const oDim = document.getElementById('outdoor-dim');
+        const oCab = document.getElementById('outdoor-cab');
+        const oGrid = document.getElementById('outdoor-grid');
+
+        // Cabinet Specs (1:1, 500x500mm)
+        const specs = {
+            '3.9': { w: 128, h: 128 },
+            '4.8': { w: 104, h: 104 },
+            '6.67': { w: 75, h: 75 },
+            '10': { w: 50, h: 50 },
+            '16': { w: 31, h: 31 }
+        };
+        const cabSizeMm = 500;
+
+        const updateOutdoor = () => {
+            const pitch = oPitch.value;
+            const cols = parseInt(oCols.value) || 1;
+            const rows = parseInt(oRows.value) || 1;
+            const resPerCab = specs[pitch] || { w: 0, h: 0 };
+
+            // Calculations
+            const totalResW = cols * resPerCab.w;
+            const totalResH = rows * resPerCab.h;
+            const totalWidthM = (cols * cabSizeMm) / 1000;
+            const totalHeightM = (rows * cabSizeMm) / 1000;
+            const totalCabs = cols * rows;
+
+            // Updates
+            oRes.textContent = `${totalResW} x ${totalResH} px`;
+            oDim.textContent = `${totalWidthM.toFixed(2)}m x ${totalHeightM.toFixed(2)}m`;
+            oCab.textContent = totalCabs;
+
+            // Grid Visualization
+            renderGrid(oGrid, cols, rows, true);
+        };
+
+        oPitch.addEventListener('change', updateOutdoor);
+        oCols.addEventListener('input', updateOutdoor);
+        oRows.addEventListener('input', updateOutdoor);
+
+        // Initial Run
+        updateOutdoor();
+    }
+
+    function renderGrid(container, cols, rows, isOutdoor) {
+        container.innerHTML = '';
+        container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+        // Limit grid items to avoid performance issues if someone types 1000
+        const maxCabs = 400; // 20x20 is max input anyway, so this is safe
+        const total = cols * rows;
+
+        if (total > maxCabs) {
+            container.innerHTML = '<div style="color:white; grid-column: 1/-1;">Max limit reached for visualizer</div>';
+            return;
+        }
+
+        for (let i = 0; i < total; i++) {
+            const cab = document.createElement('div');
+            cab.className = isOutdoor ? 'led-cabinet outdoor' : 'led-cabinet';
+            container.appendChild(cab);
+        }
+    }
 });
