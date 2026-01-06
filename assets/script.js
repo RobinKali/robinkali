@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxVideo = document.getElementById('lightbox-video');
     const closeBtn = document.querySelector('.lightbox-close');
     // Selecteer img tags én divs die als afbeelding dienen (background-image)
-    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video, .social-image-container img, .card-image, .rig-visual, .project-thumb, .section img');
+    const galleryItems = document.querySelectorAll('.gallery-item img, .gallery-item video, .social-image-container img, .card-image, .rig-visual, .project-thumb, .section img, .story-item img, .story-item video');
 
     if (lightbox) {
         // Open Lightbox
