@@ -576,17 +576,22 @@ body.page-sim {
 
 /* SIM: Rig Showcase (Tech Card Layout) */
 .rig-showcase {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     align-items: center;
+    width: 100%;
 }
 
-@media (min-width: 768px) {
-    .rig-showcase {
-        grid-template-columns: 1.2fr 0.8fr;
-        /* Foto krijgt iets meer ruimte */
-    }
+/* Removed media query to keep vertical layout on all screens as requested */
+
+.rig-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-color);
+    object-fit: cover;
 }
 
 .rig-visual {
@@ -603,6 +608,14 @@ body.page-sim {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
+}
+
+.rtw-logo {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .tech-card {
