@@ -17,8 +17,9 @@ const ASSETS_TO_CACHE = [
     '/pages/sim.html',
     '/site.webmanifest',
     '/apple-touch-icon.png',
-    '/favicon-32x32.png',
-    '/favicon-16x16.png',
+    '/favicon.svg',
+    '/favicon-96x96.png',
+    '/favicon.ico',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 

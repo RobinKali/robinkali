@@ -41,38 +41,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const icon = toggleBtn.querySelector('i');
 
-    // Check LocalStorage
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'light') {
-        body.classList.add('light-mode');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-
-        // Update Icon & Storage
-        if (body.classList.contains('light-mode')) {
-            localStorage.setItem('theme', 'light');
+    if (toggleBtn) {
+        // Check LocalStorage
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
-        } else {
-            localStorage.setItem('theme', 'dark');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
         }
-    });
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+
+            // Update Icon & Storage
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+    }
 
     // --- Mobile Menu ---
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        // Hamburger animatie (simpel)
-        hamburger.classList.toggle('toggle');
-    });
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Hamburger animatie (simpel)
+            hamburger.classList.toggle('toggle');
+        });
+    }
 
     // Sluit menu als er op een link geklikt wordt
     document.querySelectorAll('.nav-links a').forEach(link => {
@@ -601,9 +605,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalHeightM = (rows * cabHeightMm) / 1000;
             const totalCabs = cols * rows;
 
+            // Diagonal Calculation (in inches)
+            // 1 inch = 2.54 cm = 0.0254 m
+            const diagM = Math.sqrt(Math.pow(totalWidthM, 2) + Math.pow(totalHeightM, 2));
+            const diagInch = diagM / 0.0254;
+
             // Updates
             iRes.textContent = `${totalResW} x ${totalResH} px`;
             iDim.textContent = `${totalWidthM.toFixed(2)}m x ${totalHeightM.toFixed(2)}m`;
+            if (document.getElementById('indoor-diag')) {
+                document.getElementById('indoor-diag').textContent = `${Math.round(diagInch)}"`;
+            }
             iCab.textContent = totalCabs;
 
             // Grid Visualization
