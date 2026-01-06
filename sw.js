@@ -1,7 +1,11 @@
-const CACHE_NAME = 'robinkali-v2';
+const CACHE_NAME = 'robinkali-v3';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
+    '/av',
+    '/bikes',
+    '/web',
+    '/sim',
     '/assets/style.css',
     '/assets/pages.css',
     '/assets/snake-game.css',
