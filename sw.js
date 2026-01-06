@@ -1,4 +1,4 @@
-const CACHE_NAME = 'robinkali-v1';
+const CACHE_NAME = 'robinkali-v2';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
