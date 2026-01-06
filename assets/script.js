@@ -560,6 +560,29 @@ document.addEventListener('DOMContentLoaded', () => {
         reactor.addEventListener('touchend', () => isHovering = false);
     }
 
+    // --- AV Interaction (Click to Reveal) ---
+    const avTriggers = document.querySelectorAll('.action-trigger');
+    avTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            // Find the closest wrapper (ecosystem-item) then the list inside it
+            // Structure: .ecosystem-item > .resource-card.action-trigger + .link-list
+
+            // Optie 1: Sibling selection (werkt als structuur vaststaat)
+            const parent = trigger.closest('.ecosystem-item');
+            if (parent) {
+                const list = parent.querySelector('.link-list');
+                if (list) {
+                    list.classList.toggle('active');
+
+                    // Optioneel: sluit anderen als accordeon gewenst is
+                    // document.querySelectorAll('.link-list').forEach(l => {
+                    //    if (l !== list) l.classList.remove('active');
+                    // });
+                }
+            }
+        });
+    });
+
     // --- LED Configurator Logic (Restored) ---
     const indoorPitch = document.getElementById('indoor-pitch');
     const outdoorPitch = document.getElementById('outdoor-pitch');
