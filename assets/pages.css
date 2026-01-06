@@ -716,8 +716,8 @@ label {
 
 select,
 input[type="number"] {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-alt);
+    border: 1px solid rgba(128, 128, 128, 0.3);
     color: var(--text-color);
     padding: 12px;
     border-radius: 4px;
@@ -756,7 +756,7 @@ input:focus {
 .stat-value {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
     font-family: var(--font-mono);
 }
 
