@@ -429,12 +429,12 @@ body.light-mode .card {
 }
 
 .hobby-card .card-image {
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 4 / 5;
 }
 
 .card-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 5;
     background-size: cover;
     background-position: center;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
