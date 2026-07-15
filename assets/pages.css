@@ -1162,3 +1162,797 @@ input:focus {
         opacity: 0;
     }
 }
+
+/* ==========================================================================
+   UPGRADED SUB-HERO THEMES (Bikes, AV, SimRacing, Webdesign)
+   ========================================================================== */
+
+/* --- 1. BIKES HERO (Garage & Tachometer HUD) --- */
+.hero-bikes .sub-hero-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+}
+
+.hero-panel-bikes {
+    background: rgba(13, 17, 23, 0.75);
+    backdrop-filter: blur(12px);
+    padding: 3rem;
+    border-left: 5px solid var(--accent-color);
+    border-radius: 0 16px 16px 0;
+    max-width: 600px;
+    position: relative;
+    z-index: 5;
+    clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 5px solid var(--accent-color);
+}
+
+.hero-panel-bikes h1 {
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    margin: 0 0 1rem 0;
+    display: table;
+}
+
+.hero-panel-bikes .hero-sub {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.bikes-hud {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: rgba(13, 17, 23, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 16px;
+    color: #fff;
+    font-family: var(--font-mono);
+    z-index: 4;
+    min-width: 260px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.hud-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.speed-val {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px var(--accent-color);
+    line-height: 1.1;
+    font-style: italic;
+    font-family: var(--font-headers);
+}
+
+.gear-container {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gear-val {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    border: 3px solid #fff;
+    padding: 0.1rem 1.8rem;
+    border-radius: 8px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    line-height: 1.2;
+}
+
+.hud-rpm-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.hud-rpm-bar {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hud-rpm-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--accent-color) 80%, #ff003c 80%);
+    animation: rpmFill 4s infinite alternate ease-in-out;
+    transform-origin: left;
+}
+
+.hud-lbl {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
+@keyframes rpmFill {
+    0% { transform: scaleX(0.15); }
+    15% { transform: scaleX(0.45); }
+    40% { transform: scaleX(0.3); }
+    75% { transform: scaleX(0.92); }
+    90% { transform: scaleX(0.98); }
+    100% { transform: scaleX(0.88); }
+}
+
+@media (max-width: 992px) {
+    .bikes-hud {
+        right: 4%;
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-bikes .sub-hero-content {
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-panel-bikes {
+        clip-path: none;
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 90%;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 5px solid var(--accent-color);
+        margin: 0 auto;
+    }
+    .hero-panel-bikes h1 {
+        display: table;
+        margin: 0 auto 1rem auto;
+    }
+    .bikes-hud {
+        display: none; /* Hide tachometer on mobile devices */
+    }
+}
+
+
+/* --- 2. AV HERO (Camera Viewfinder HUD) --- */
+.hero-av .sub-hero-content {
+    z-index: 5;
+    position: relative;
+}
+
+.hero-av h1 {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+}
+
+.camera-hud {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    padding: 3rem;
+    font-family: var(--font-mono);
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hud-rec {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: #ff3333;
+    text-shadow: 0 0 8px #ff3333;
+}
+
+.rec-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    animation: blink 1s infinite alternate;
+}
+
+.hud-tc {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.hud-battery {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.hud-corners {
+    position: absolute;
+    inset: 2rem;
+    pointer-events: none;
+}
+
+.hud-corners .corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--accent-color);
+}
+
+.hud-corners .tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.hud-corners .tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.hud-corners .bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.hud-corners .br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.audio-levels {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+    display: flex;
+    gap: 8px;
+    height: 70px;
+    align-items: flex-end;
+}
+
+.audio-bar {
+    width: 10px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.audio-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #00ff66 60%, var(--accent-color) 85%, #ff3333 100%);
+    animation: bounceBar 1.2s infinite ease-in-out alternate;
+    transform-origin: bottom;
+}
+
+.audio-bar:nth-child(2) .audio-fill {
+    animation-delay: 0.3s;
+    animation-duration: 0.9s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+@keyframes bounceBar {
+    0% { transform: scaleY(0.08); }
+    100% { transform: scaleY(0.92); }
+}
+
+@media (max-width: 768px) {
+    .camera-hud {
+        padding: 1.5rem;
+    }
+    .hud-rec, .hud-tc {
+        top: 1.5rem;
+    }
+    .hud-rec { left: 1.5rem; }
+    .hud-tc { right: 1.5rem; }
+    .hud-battery, .audio-levels {
+        bottom: 1.5rem;
+    }
+    .hud-battery { left: 1.5rem; }
+    .audio-levels { right: 1.5rem; }
+    .hud-corners { inset: 1rem; }
+    .hud-corners .corner {
+        width: 15px;
+        height: 15px;
+        border-width: 2px;
+    }
+}
+
+
+/* --- 3. SIM RACING HERO (Console Card & Inputs) --- */
+.hero-sim .sub-hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-panel-sim {
+    background: rgba(13, 17, 23, 0.75);
+    backdrop-filter: blur(12px);
+    padding: 3.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    max-width: 600px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.hero-panel-sim::before, .hero-panel-sim::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 8px;
+}
+
+.hero-panel-sim::before {
+    top: 0;
+    background: repeating-linear-gradient(45deg, var(--accent-color), var(--accent-color) 12px, #fff 12px, #fff 24px);
+}
+
+.hero-panel-sim::after {
+    bottom: 0;
+    background: repeating-linear-gradient(45deg, var(--accent-color), var(--accent-color) 12px, #fff 12px, #fff 24px);
+}
+
+.hero-panel-sim h1 {
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    display: table;
+}
+
+.sim-hud {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    padding: 3rem;
+    font-family: var(--font-mono);
+}
+
+.sim-quote {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    background: rgba(13, 17, 23, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid var(--accent-color);
+    padding: 1.25rem;
+    border-radius: 8px;
+    color: #fff;
+    width: 280px;
+    text-align: left;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.quote-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quote-body {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    font-style: italic;
+    font-weight: 500;
+    color: #f3f3f3;
+}
+
+.quote-author {
+    margin-top: 8px;
+    font-size: 0.7rem;
+    text-align: right;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.telemetry-inputs {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+    display: flex;
+    gap: 20px;
+    height: 140px;
+}
+
+.telemetry-bar {
+    width: 18px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.telemetry-bar .bar-fill {
+    width: 100%;
+    border-radius: 3px;
+    transform-origin: bottom;
+}
+
+.throttle .bar-fill {
+    background: #00ff66;
+    box-shadow: 0 0 10px #00ff66;
+    animation: throttleInput 4.5s infinite ease-in-out alternate;
+}
+
+.brake .bar-fill {
+    background: #ff003c;
+    box-shadow: 0 0 10px #ff003c;
+    animation: brakeInput 4.5s infinite ease-in-out alternate;
+    animation-delay: 2.2s;
+}
+
+.bar-lbl {
+    font-size: 0.65rem;
+    margin-top: 8px;
+    color: var(--text-muted);
+    position: absolute;
+    bottom: -18px;
+    font-weight: bold;
+}
+
+@keyframes throttleInput {
+    0% { height: 15%; }
+    30% { height: 100%; }
+    55% { height: 60%; }
+    75% { height: 100%; }
+    100% { height: 5%; }
+}
+
+@keyframes brakeInput {
+    0% { height: 0%; }
+    25% { height: 80%; }
+    45% { height: 0%; }
+    80% { height: 100%; }
+    100% { height: 0%; }
+}
+
+@media (max-width: 992px) {
+    .sim-quote {
+        left: 1.5rem;
+        top: 1.5rem;
+    }
+    .telemetry-inputs {
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sim-hud {
+        display: none; /* Hide telemetry HUD overlay on mobile devices */
+    }
+    .hero-panel-sim {
+        padding: 2.5rem;
+        max-width: 90%;
+    }
+}
+
+
+/* --- 4. WEBDESIGN HERO (VS Code IDE mockup) --- */
+.hero-web .sub-hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.editor-window {
+    width: 100%;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    z-index: 5;
+}
+
+.editor-titlebar {
+    background: rgba(21, 27, 35, 0.95);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-controls .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.window-title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+}
+
+.editor-workspace {
+    display: flex;
+    min-height: 380px;
+}
+
+.editor-sidebar {
+    width: 220px;
+    background: rgba(15, 20, 26, 0.95);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.sidebar-header {
+    font-weight: bold;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.sidebar-item {
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-item.active {
+    background: rgba(26, 155, 193, 0.15);
+    color: var(--accent-color);
+}
+
+.sidebar-item:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.editor-body {
+    flex-grow: 1;
+    display: flex;
+    padding: 2rem;
+    font-family: var(--font-mono);
+    background: rgba(13, 17, 23, 0.2);
+}
+
+.editor-lines {
+    color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    padding-right: 1.5rem;
+    user-select: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+    line-height: 2.2;
+}
+
+.editor-code {
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.code-comment {
+    color: #6a737d;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.editor-code h1 {
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    margin: 0 0 1rem 0;
+    display: table;
+}
+
+.editor-code .hero-sub {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.editor-code .hero-sub::before {
+    content: 'const desc = "';
+    color: #e36209;
+}
+
+.editor-code .hero-sub::after {
+    content: '";';
+    color: var(--text-color);
+}
+
+.code-btn-line {
+    margin-top: 1rem;
+}
+
+.code-btn-line .cyber-hero-btn {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .editor-sidebar {
+        display: none; /* Hide files list sidebar on smaller screens */
+    }
+    .editor-body {
+        padding: 1.5rem;
+    }
+    .editor-lines {
+        padding-right: 1rem;
+    }
+    .editor-code {
+        padding-left: 1.25rem;
+    }
+    .editor-code h1 {
+        font-size: clamp(2.4rem, 5vw, 3.5rem);
+    }
+}
+
+/* Instagram Section */
+.insta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+.insta-item {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.insta-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.insta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.insta-overlay i {
+    color: #fff;
+    font-size: 2rem;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+/* Hover effects */
+.insta-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(204, 255, 0, 0.2); /* Rossi yellow accent glow */
+    border-color: var(--accent-color);
+}
+
+.insta-item:hover img {
+    transform: scale(1.08);
+}
+
+.insta-item:hover .insta-overlay {
+    opacity: 1;
+}
+
+.insta-item:hover .insta-overlay i {
+    transform: scale(1);
+}
+
+.insta-link-wrapper {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.insta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-headers);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: italic;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.insta-link:hover {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(204, 255, 0, 0.4);
+}
+
+@media (max-width: 992px) {
+    .insta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .insta-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
